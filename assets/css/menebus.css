@@ -1,0 +1,67 @@
+._record-box {
+	background: #fff;
+	width: 100%;
+	margin-top: 30px;
+	padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 0.2667rem #ececec;
+    border: 1px solid #ececec;
+}
+
+._record-box .label {
+    font-size: 19px;
+    font-weight: bold;
+	text-align: center;
+}
+
+._record-box .list-box {
+    height: 190px;
+    overflow: hidden;
+}
+
+._record-box .list {
+    padding-top: 0.0133rem;
+}
+
+._record-box .list .item {
+    margin-bottom: 0.2667rem;
+    display: flex;
+    align-items: center;
+    padding: 0.2rem 0.3467rem;
+    border-radius: 0.2667rem;
+    background-color: #f4f4f4;
+}
+
+._record-box .list .item .record_logo {
+    font-size: 0;
+}
+
+._record-box .list .item .record_logo img {
+    width: 48px;
+    height: 48px;
+	border: 1px solid #ececec;
+    border-radius: 50%;
+}
+
+._record-box .list .item .center {
+    flex: 1;
+    padding-left: 0.3733rem;
+}
+
+._record-box .list .item .center .h1 {
+    font-size: 16px;
+}
+
+._record-box .list .item .center .h1 .name {
+    font-size: 16px;
+}
+
+._record-box .list .item .center .h1 .number {
+    color: #ff2f2f;
+    margin-left: 0.1067rem;
+}
+
+._record-box .list .item .center .h2 {
+    font-size: 15px;
+    color: #999999;
+}

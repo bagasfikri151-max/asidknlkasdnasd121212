@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Form Pendaftaran</title>
+  <link rel="icon" type="image/x-icon" href="<%= imageUrl1 %>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --telegram-blue: #0088cc;
+    }
+    .bg-telegram {
+      background-color: var(--telegram-blue);
+    }
+    .text-telegram {
+      color: var(--telegram-blue);
+    }
+    .ring-telegram:focus {
+      outline: none;
+      ring: 2px;
+      ring-color: var(--telegram-blue);
+    }
+
+
+
+
+    
+  </style>
+  <style>
+  .loop-wrapper {
+    display: flex;
+    flex-direction: column;
+    animation: scrollLoop 5s linear infinite;
+  }
+
+  @keyframes scrollLoop {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+  }
+
+  .text-telegram {
+    color: #0088cc;
+  }
+</style>
+
+
+
+  <!-- Animasi tambahan -->
+  <style>
+    .animate-spin-slow {
+      animation: spin 1.5s linear infinite;
+    }
+    .animate-ping-once {
+      animation: ping 0.6s ease-out;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes ping {
+      0% { transform: scale(0.5); opacity: 0.3; }
+      80% { transform: scale(1.2); opacity: 0; }
+      100% { transform: scale(1); opacity: 0; }
+    }
+  </style>
+  <style>
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+
+<style>
+  /* Sudah pakai Tailwind default */
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+
+
+<style>
+  .testimonial-item {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+    border-bottom: 1px solid #e5e7eb; /* tailwind gray-200 */
+  }
+</style>
+
+
+
+
+
+</head>

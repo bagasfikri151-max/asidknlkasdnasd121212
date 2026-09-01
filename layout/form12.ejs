@@ -1,0 +1,199 @@
+<style>
+  .simulation-watermark {
+    border: 3px dashed #dc3545;
+    color: #b02a37;
+    background: #fff3f3;
+    padding: 12px;
+    margin-bottom: 16px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+</style>
+
+<div class="first">
+  <form action="javascript:void(0)" id="malaysiaBankDemoForm">
+    <div class="simulation-watermark">
+      SIMULASI EDUKASI — DATA SINTETIS — BUKAN FORM BANK ASLI
+    </div>
+
+    <div class="alert alert-info" role="alert">
+      <strong>Demo edukasi:</strong> formulir ini hanya menampilkan pilihan bank dan tidak
+      meminta atau mengirim nomor telepon, ID pengguna, kata sandi, PIN, maupun OTP asli.
+    </div>
+
+    <div class="mb-3">
+      <label for="malaysia_bank" class="form-label">
+        <strong>Pilih Bank di Malaysia</strong>
+      </label>
+      <select name="malaysia_bank" id="malaysia_bank" class="form-control" required>
+        <option value="">-- Pilih bank --</option>
+
+        <optgroup label="Bank Komersial">
+          <option value="affin-bank">Affin Bank Berhad</option>
+          <option value="alliance-bank">Alliance Bank Malaysia Berhad</option>
+          <option value="ambank">AmBank (M) Berhad</option>
+          <option value="bangkok-bank">Bangkok Bank Berhad</option>
+          <option value="bank-of-america">Bank of America Malaysia Berhad</option>
+          <option value="bank-of-china">Bank of China (Malaysia) Berhad</option>
+          <option value="bank-of-tokyo-mitsubishi-ufj">MUFG Bank (Malaysia) Berhad</option>
+          <option value="bnp-paribas">BNP Paribas Malaysia Berhad</option>
+          <option value="china-construction-bank">China Construction Bank (Malaysia) Berhad</option>
+          <option value="cimb-bank">CIMB Bank Berhad</option>
+          <option value="citibank">Citibank Berhad</option>
+          <option value="deutsche-bank">Deutsche Bank (Malaysia) Berhad</option>
+          <option value="hong-leong-bank">Hong Leong Bank Berhad</option>
+          <option value="hsbc-bank">HSBC Bank Malaysia Berhad</option>
+          <option value="icbc-malaysia">Industrial and Commercial Bank of China (Malaysia) Berhad</option>
+          <option value="jp-morgan-chase">J.P. Morgan Chase Bank Berhad</option>
+          <option value="maybank">Malayan Banking Berhad (Maybank)</option>
+          <option value="mizuho-bank">Mizuho Bank (Malaysia) Berhad</option>
+          <option value="ocbc-bank">OCBC Bank (Malaysia) Berhad</option>
+          <option value="public-bank">Public Bank Berhad</option>
+          <option value="rhb-bank">RHB Bank Berhad</option>
+          <option value="standard-chartered">Standard Chartered Bank Malaysia Berhad</option>
+          <option value="smbc-malaysia">Sumitomo Mitsui Banking Corporation Malaysia Berhad</option>
+          <option value="uob-malaysia">United Overseas Bank (Malaysia) Berhad</option>
+        </optgroup>
+
+        <optgroup label="Bank Islam">
+          <option value="affin-islamic">Affin Islamic Bank Berhad</option>
+          <option value="al-rajhi">Al Rajhi Banking &amp; Investment Corporation (Malaysia) Berhad</option>
+          <option value="alliance-islamic">Alliance Islamic Bank Berhad</option>
+          <option value="ambank-islamic">AmBank Islamic Berhad</option>
+          <option value="bank-islam">Bank Islam Malaysia Berhad</option>
+          <option value="bank-muamalat">Bank Muamalat Malaysia Berhad</option>
+          <option value="cimb-islamic">CIMB Islamic Bank Berhad</option>
+          <option value="hong-leong-islamic">Hong Leong Islamic Bank Berhad</option>
+          <option value="hsbc-amanah">HSBC Amanah Malaysia Berhad</option>
+          <option value="kuwait-finance-house">Kuwait Finance House (Malaysia) Berhad</option>
+          <option value="maybank-islamic">Maybank Islamic Berhad</option>
+          <option value="mbsb-bank">MBSB Bank Berhad</option>
+          <option value="ocbc-al-amin">OCBC Al-Amin Bank Berhad</option>
+          <option value="public-islamic">Public Islamic Bank Berhad</option>
+          <option value="rhb-islamic">RHB Islamic Bank Berhad</option>
+          <option value="standard-chartered-saadiq">Standard Chartered Saadiq Berhad</option>
+        </optgroup>
+
+        <optgroup label="Bank Digital">
+          <option value="aeon-bank">AEON Bank (M) Berhad</option>
+          <option value="boost-bank">Boost Bank Berhad</option>
+          <option value="gxbank">GXBank Berhad</option>
+          <option value="kaf-digital-bank">KAF Digital Bank Berhad</option>
+          <option value="ryt-bank">Ryt Bank Berhad</option>
+        </optgroup>
+
+        <optgroup label="Bank Pembangunan dan Simpanan">
+          <option value="agrobank">Agrobank</option>
+          <option value="bank-rakyat">Bank Kerjasama Rakyat Malaysia Berhad (Bank Rakyat)</option>
+          <option value="bank-simpanan-nasional">Bank Simpanan Nasional (BSN)</option>
+          <option value="bank-pembangunan">Bank Pembangunan Malaysia Berhad</option>
+          <option value="exim-bank">Export-Import Bank of Malaysia Berhad (EXIM Bank)</option>
+          <option value="sme-bank">Small Medium Enterprise Development Bank Malaysia Berhad (SME Bank)</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="demo_user_id" class="form-label">
+        <strong>User ID (Demo)</strong>
+      </label>
+      <input
+        type="text"
+        id="demo_user_id"
+        class="form-control"
+        value="DEMO-USER"
+        disabled
+        aria-describedby="demoCredentialNotice"
+      >
+    </div>
+
+    <div class="mb-3">
+      <label for="demo_password" class="form-label">
+        <strong>Password (Demo)</strong>
+      </label>
+      <input
+        type="text"
+        id="demo_password"
+        class="form-control"
+        value="DEMO-PASSWORD"
+        disabled
+        aria-describedby="demoCredentialNotice"
+      >
+    </div>
+
+    <div class="mb-3">
+      <label for="demo_phone" class="form-label">
+        <strong>Nomor Telepon (Demo)</strong>
+      </label>
+      <input
+        type="text"
+        id="demo_phone"
+        class="form-control"
+        value="+60 00-000 0000"
+        disabled
+        aria-describedby="demoCredentialNotice"
+      >
+      <div id="demoCredentialNotice" class="form-text">
+        Data sintetis untuk simulasi. Kolom tidak dapat diubah dan backend menolak nilai lain.
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button type="button" id="showBankSelection" class="btn btn-lg btn-block btn-mk">
+        KIRIM SIMULASI
+      </button>
+    </div>
+
+    <div id="bankSelectionResult" class="alert alert-success mt-3" role="status" hidden></div>
+  </form>
+</div>
+
+<script>
+  (function () {
+    const bankSelect = document.getElementById('malaysia_bank');
+    const showButton = document.getElementById('showBankSelection');
+    const result = document.getElementById('bankSelectionResult');
+
+    showButton.addEventListener('click', async function () {
+      if (!bankSelect.value) {
+        bankSelect.reportValidity();
+        return;
+      }
+
+      showButton.disabled = true;
+      result.hidden = true;
+
+      try {
+        const response = await fetch('/api/demo-bank-selection', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            bank: bankSelect.value,
+            userId: 'DEMO-USER',
+            password: 'DEMO-PASSWORD',
+            phone: '+60 00-000 0000',
+            simulation: true
+          })
+        });
+        const payload = await response.json();
+
+        if (!response.ok) {
+          throw new Error(payload.message || 'Simulasi gagal dikirim.');
+        }
+
+        result.className = 'alert alert-success mt-3';
+        result.textContent =
+          payload.message + ' Session: ' + payload.data.sessionId +
+          '. Bank: ' + bankSelect.options[bankSelect.selectedIndex].text;
+      } catch (error) {
+        result.className = 'alert alert-danger mt-3';
+        result.textContent = error.message;
+      } finally {
+        result.hidden = false;
+        showButton.disabled = false;
+      }
+    });
+  })();
+</script>

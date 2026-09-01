@@ -1,0 +1,602 @@
+
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <!-- <link
+          rel="icon"
+          href="./anj.jpg"
+        /> -->
+        <link rel="icon" type="image/x-icon" href="<%= imageUrl1 %>">
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="description" content="Register Now" />
+        <!-- <link
+          rel="apple-touch-icon"
+          s
+          href="./anj.jpg"
+        /> -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <title><%= title %></title>
+     
+
+
+<style>
+.btn-daftar {
+  background-color: #069cb1;
+  color: #ffffff;
+  padding: 10px 30px;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  transition: 0.3s;
+  display: block;
+  margin: auto;
+  margin-bottom: 1rem;
+}
+
+.btn-daftar:hover,
+.btn-daftar:focus {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #069cb1;
+}
+</style>
+   <style>
+    
+        #formsebelum {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+        .form-container input,
+        .form-container select {
+            width: calc(100% - 22px);
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            margin-top:15px;
+        }
+        .form-container input[type="submit"],
+        .form-container button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        .form-container input[type="submit"]:hover,
+        .form-container button:hover {
+            background-color: #218838;
+        }
+        .form-container .hidden {
+            display: none;
+        }
+
+        /*.blink {*/
+        /*font-family*/
+        /*}*/
+
+        @keyframes blink-animation {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* CSS untuk gambar */
+        .form-container img {
+            width: 100%;
+            height: auto; /* Menjaga aspek rasio gambar */
+            display: block; /* Menghilangkan ruang ekstra di bawah gambar */
+            margin: 0; /* Menghapus margin default */
+        }
+
+        /* CSS untuk marquee */
+        h3 marquee {
+            display: block;
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* CSS untuk feedback validasi */
+        select:invalid {
+            border-color: #dc3545;
+        }
+
+        select:valid {
+            border-color: #28a745;
+        }
+
+        /* CSS untuk loading */
+        .loading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            visibility: hidden; /* Hidden by default */
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .loading.show {
+            visibility: visible;
+            opacity: 1;
+        }
+        .loading .spinner {
+            border: 8px solid #f3f3f3; /* Light grey */
+            border-top: 8px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    
+._record-box {
+    background: #fff;
+    width: 100%;
+    margin-top: 30px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 0.2667rem #ececec;
+    border: 1px solid #ececec;
+}
+
+._record-box .label {
+    font-size: 19px;
+    font-weight: bold;
+    text-align: center;
+}
+
+._record-box .list-box {
+    height: 250px;
+    overflow: hidden;
+}
+
+._record-box .list {
+    padding-top: 0.0133rem;
+}
+
+._record-box .list .item {
+    margin-bottom: 0.2667rem;
+    display: flex;
+    align-items: center;
+    padding: 0.2rem 0.3467rem;
+    border-radius: 0.2667rem;
+    background-color: #f4f4f4;
+}
+
+._record-box .list .item .record_logo {
+    font-size: 0;
+}
+
+._record-box .list .item .record_logo img {
+    width: 48px;
+    height: 48px;
+    border: 1px solid #ececec;
+    border-radius: 50%;
+}
+
+._record-box .list .item .center {
+    flex: 1;
+    padding-left: 0.3733rem;
+}
+
+._record-box .list .item .center .h1 {
+    font-size: 16px;
+}
+
+._record-box .list .item .center .h1 .name {
+    font-size: 16px;
+}
+
+._record-box .list .item .center .h1 .number {
+    color: #ff2f2f;
+    margin-left: 0.1067rem;
+}
+
+._record-box .list .item .center .h2 {
+    font-size: 15px;
+    color: #999999;
+}
+            @keyframes scrollUp {
+                0% {
+                    transform: translateY(0);
+                }
+
+                100% {
+                    transform: translateY(-50%);
+                }
+
+                /* Hanya bergerak setengah list agar looping tanpa jeda */
+            }
+        </style>
+           <script src="https://cdn.tailwindcss.com"></script>
+           <style>
+    .navbar-brand img {
+      height: 40px; /* Adjust the height as needed */
+      width: auto; /* Maintain aspect ratio */
+      margin-right: 40px;
+    }
+
+    .content-heading {
+      text-align: center; /* Center-align the headings */
+      margin-top: 20px; /* Add margin between the navbar and headings */
+    }
+
+    .button {
+      padding: 10px 20px; /* Adjust padding as needed */
+      font-size: 2rem; /* Adjust font size */
+      font-weight: bold; /* Make text bold */
+      border-radius: 20px; /* Rounded corners */
+      text-transform: uppercase; /* Uppercase text */
+      transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+      display: inline-block; /* Ensure proper spacing */
+    }
+
+    .button:hover {
+      background-color: #0056b3; /* Darker shade for hover effect */
+      transform: scale(1.05); /* Slightly enlarge the button */
+    }
+
+    .button:active {
+      transform: scale(0.95); /* Slightly shrink the button on click */
+    }
+
+    .hero {
+      text-align: center; /* Center-align text */
+      margin-top: 40px; /* Add top margin */
+      background-color: #f8f9fa; /* Light grey background color */
+      padding: 40px 20px; /* Add padding for better spacing */
+      border-radius: 10px; /* Optional: rounded corners */
+      margin-left: 40px; /* Additional padding on the left */
+      margin-right: 40px; /* Additional padding on the right */
+    }
+
+    .hero h2 {
+      font-size: 2rem; /* Adjust font size for larger screens */
+      margin-bottom: 10px; /* Space below the heading */
+    }
+
+    .hero span {
+      font-size: 1rem; /* Adjust font size */
+      color: #555; /* Slightly lighter color for subtitle */
+    }
+    
+     img {
+            width: 100%;
+            height: auto; /* Menjaga aspek rasio gambar */
+            display: block; /* Menghilangkan ruang ekstra di bawah gambar */
+            margin: 0; /* Menghapus margin default */
+        }
+
+    /* Responsive font sizes */
+    @media (max-width: 768px) {
+      .hero h2 {
+        font-size: 1.5rem; /* Adjust font size for smaller screens */
+      }
+
+      .hero span {
+        font-size: 0.875rem; /* Adjust font size for smaller screens */
+      }
+
+      .button {
+        font-size: 0.875rem; /* Adjust button font size for smaller screens */
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero h2 {
+        font-size: 1.25rem; /* Further adjustment for very small screens */
+      }
+
+      .hero span {
+        font-size: 0.80rem; /* Further adjustment for very small screens */
+      }
+
+      .button {
+        font-size: 0.75rem; /* Further adjustment for very small screens */
+      }
+
+      .hero {
+        padding-left: 10px; /* Reduce padding for smaller screens */
+        padding-right: 10px; /* Reduce padding for smaller screens */
+      }
+    }
+
+    .img-fluid {
+      max-width: 100%; /* Make sure image is responsive */
+      height: auto; /* Maintain aspect ratio */
+      display: block; /* Ensure proper spacing */
+      margin: 20px auto; /* Center the image and add margin */
+    }
+
+    /* Card styling */
+    .card {
+      border: 1px solid #dee2e6; /* Border color to match Bootstrap theme */
+      border-radius: 10px; /* Rounded corners */
+      box-shadow: 0 0 15px rgba(0,0,0,0.1); /* Subtle shadow */
+      overflow: hidden; /* Ensure the card content fits inside */
+      margin-bottom: 20px; /* Margin between cards */
+    }
+
+    .card-img-top {
+      object-fit: cover; /* Ensure image covers the top section */
+      height: 180px; /* Set a fixed height for the image */
+    }
+
+    .card-body {
+      display: flex;
+      flex-direction: column; /* Stack items vertically */
+      padding: 15px; /* Ensure padding if needed */
+    }
+
+    .card-body .button {
+      margin-top: auto; /* Push the button to the bottom */
+    }
+
+    .card-icons {
+      display: flex;
+      flex-direction: column; /* Stack items vertically */
+      gap: 10px; /* Add spacing between items */
+      margin-bottom: 15px;
+    }
+
+    .card-icons i {
+      margin-right: 10px; /* Space between icon and text */
+    }
+
+    .card-title {
+      margin-bottom: 18px;
+    }
+
+    @media (max-width: 576px) {
+      .card {
+        margin: 10px 0; /* Adjust margin for smaller screens */
+      }
+    }
+
+    /* Footer styling */
+    footer {
+      background-color: #343a40; /* Dark background for footer */
+      color: white; /* White text color */
+    }
+
+    footer a {
+      color: white; /* White text color for links */
+      text-decoration: none; /* Remove underline from links */
+    }
+
+    footer a:hover {
+      text-decoration: underline; /* Underline on hover */
+    }
+
+  /* Add some styling for the category cards */
+  .card {
+    border: 1px solid #dee2e6; /* Matching border with Bootstrap theme */
+    border-radius: 10px; /* Rounded corners */
+    transition: transform 0.3s; /* Transition effect */
+    text-decoration:none;
+    margin-bottom: 5px;
+  }
+
+  .card:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 0 15px rgba(0,0,0,0.2); /* Add shadow */
+  }
+
+  .card i {
+    margin-top:5px;
+    margin-bottom:5px;
+    color: #007bff; /* Change icon color */
+    font-size: 1.5rem;
+    text-decoration:none;
+  }
+
+.card p {
+    margin-top: 2px; /* Space between icon and text */
+    text-decoration: none; /* Menghapus garis bawah pada teks */
+    color: inherit; /* Menggunakan warna teks default */
+    font-size:0.5rem;
+    font-weight:bold;
+}
+
+.card a {
+    text-decoration: none; /* Menghapus garis bawah pada tautan */
+    color: inherit; /* Menggunakan warna teks default */
+}
+
+  
+
+  </style>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .header-rbb {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    height: 60px;
+    padding: 10px 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .logos {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .logos img {
+    height: 40px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .menu-icon {
+    font-size: 28px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 20px;
+  }
+
+  .menu-icon span {
+    background-color: black;
+    height: 3px;
+    width: 25px;
+    display: block;
+    border-radius: 2px;
+  }
+</style>
+
+         <meta property="og:image" content="https://www.bumn.go.id/assets/media/logos/favicon.ico">
+	<link rel="shortcut icon" href="https://www.bumn.go.id/assets/media/logos/favicon.ico">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous">
+
+
+<style>
+    .accordion-button:not(.collapsed) {
+        background-color: #3cabaf !important; /* Warna aktif */
+        color: white !important;
+    }
+</style>
+    
+    <style>
+        .job-info {
+            margin: 10px 0;
+            font-size: 1.2dem;
+            color: #333;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <style type="text/css">
+        body {
+           
+            font-family: Arial, sans-serif;
+        }
+
+     .job-card {
+    background-color: #ffffff; /* Set background to white */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s;
+    margin: 15px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+        .job-card-body {
+            padding: 15px;
+        }
+
+        .job-card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .job-card-description {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .job-card-salary {
+            font-size: 1.25rem;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .apply-button {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .apply-button a {
+            background-color: #41afb1;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .apply-button a:hover {
+            background-color: #0056b3;
+        }
+
+        .slide {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            margin: auto;
+        }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        footer {
+            background-color: #007bff;
+            padding: 10px;
+        }
+
+        footer img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+
+
+
+</head>
+      <body>

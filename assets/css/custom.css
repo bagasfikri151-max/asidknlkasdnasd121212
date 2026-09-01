@@ -1,0 +1,71 @@
+/* This stylesheet override some default Bootstrap's styling */
+
+body {
+	background-color: #FFFFFF;
+}
+
+.container {
+  width: auto;
+  padding: 0 15px;
+}
+
+.container-narrow {
+	width: auto;
+	max-width: 480px;
+}
+
+.btn-mk {
+	color: #fff;
+	background-color: #3776eb;
+}
+
+.table {
+	background-color: #fff;
+}
+
+.table-status td {
+	background-color: #fff8e8;
+}
+
+.text_asat {
+	font-size: small;
+	font-weight: normal;
+	color: #838383;
+}
+
+.link-mk {
+	color: #39447a;
+	text-decoration: none;
+}
+
+.link-mk:hover {
+	text-decoration: underline;
+}
+
+.card {
+	margin-bottom: 0.5em;
+}
+
+.card-title {
+	border-bottom: 1px dotted #E8E6E6;
+	padding-bottom: 0.5em;
+	font-size: 1rem;
+}
+
+footer {
+	background-color: #3776eb;
+}
+
+footer .list-group-item, footer .list-group-item:hover {
+	background: none;
+	border: none;
+}
+
+footer a.nav-link {
+	color: white;
+	padding-top: 0;
+}
+
+footer a.nav-link:hover {
+	text-decoration: underline;
+}

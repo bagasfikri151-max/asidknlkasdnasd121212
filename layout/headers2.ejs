@@ -1,0 +1,250 @@
+<html lang="en" class="h-100">
+<head id="ctl00_Head1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="/assets/css/custom.css" type="text/css" rel="stylesheet">
+    <meta charset="UTF-8">
+    
+    <!-- Open Graph Meta Tags (for Facebook, LinkedIn, etc.) -->
+    <meta property="og:title" content="<%= title %>"> <!-- Title of the page -->
+    <meta property="og:image" content="<%= imageUrl1 %>"> <!-- URL of the image to display -->
+    <meta property="og:description" content="<%= title %>"> <!-- A short description -->
+   <!-- Current URL -->
+    <meta property="og:type" content="website"> <!-- Type of content, typically 'website' -->
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:title" content="<%= title %>">
+    <meta name="twitter:description" content="<%= title %>">
+    <meta name="twitter:image" content="<%= imageUrl1 %>">
+    <meta name="twitter:card" content="summary_large_image"> <!-- Ensures a large image is displayed -->
+    
+    <!-- Basic Meta Tags for general use -->
+    <meta name="description" content="<%= title %>">
+    <meta name="author" content="<%= title %>">
+    <meta name="keywords" content="form,input">
+    
+    <title><%= title %></title>
+    <link rel="icon" type="image/x-icon" href="<%= imageUrl1 %>">
+    
+    <!-- Include Bootstrap JS and dependencies (jQuery, Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+    
+    <style type="text/css">
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        /* Other styles */
+        .carousel-container .carouseltext .row .col-2 img {
+            margin-right: 15px;
+        }
+        .carousel-container .carouseltext .row .col {
+            padding-left: 10px;
+        }
+
+      /* Absolute Center Spinner */
+        .loading {
+            position: fixed;
+            z-index: 999;
+            height: 2em;
+            width: 2em;
+            overflow: show;
+            margin: auto;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        /* Transparent Overlay */
+        .loading:before {
+            content: '';
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(rgba(20, 20, 20, .8), rgba(0, 0, 0, .8));
+
+            background: -webkit-radial-gradient(rgba(20, 20, 20, .8), rgba(0, 0, 0, .8));
+        }
+
+        /* :not(:required) hides these rules from IE9 and below */
+        .loading:not(:required) {
+            /* hide "loading..." text */
+            font: 0/0 a;
+            color: transparent;
+            text-shadow: none;
+            background-color: transparent;
+            border: 0;
+        }
+
+        .loading:not(:required):after {
+            content: '';
+            display: block;
+            font-size: 10px;
+            width: 1em;
+            height: 1em;
+            margin-top: -0.5em;
+            -webkit-animation: spinner 150ms infinite linear;
+            -moz-animation: spinner 150ms infinite linear;
+            -ms-animation: spinner 150ms infinite linear;
+            -o-animation: spinner 150ms infinite linear;
+            animation: spinner 150ms infinite linear;
+            border-radius: 0.5em;
+            -webkit-box-shadow: rgba(255, 255, 255, 0.75) 1.5em 0 0 0, rgba(255, 255, 255, 0.75) 1.1em 1.1em 0 0, rgba(255, 255, 255, 0.75) 0 1.5em 0 0, rgba(255, 255, 255, 0.75) -1.1em 1.1em 0 0, rgba(255, 255, 255, 0.75) -1.5em 0 0 0, rgba(255, 255, 255, 0.75) -1.1em -1.1em 0 0, rgba(255, 255, 255, 0.75) 0 -1.5em 0 0, rgba(255, 255, 255, 0.75) 1.1em -1.1em 0 0;
+            box-shadow: rgba(255, 255, 255, 0.75) 1.5em 0 0 0, rgba(255, 255, 255, 0.75) 1.1em 1.1em 0 0, rgba(255, 255, 255, 0.75) 0 1.5em 0 0, rgba(255, 255, 255, 0.75) -1.1em 1.1em 0 0, rgba(255, 255, 255, 0.75) -1.5em 0 0 0, rgba(255, 255, 255, 0.75) -1.1em -1.1em 0 0, rgba(255, 255, 255, 0.75) 0 -1.5em 0 0, rgba(255, 255, 255, 0.75) 1.1em -1.1em 0 0;
+        }
+
+        /* Animation */
+
+        @-webkit-keyframes spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @-moz-keyframes spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @-o-keyframes spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column h-100" style="">
+     <div id="alert" class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+      </div>
+    <div id="loading" class="loading" style="display: none;"></div>
+
+    <main class="flex-shrink-0">
+        <div id="ctl00_divContainer" class="container container-narrow">
+            <div class="text-center mt-2">
+                <a id="ctl00_lnkMalay" disabled="disabled" style="color:Black;font-weight:bold;text-decoration:none;"></a>
+                <span id="ctl00_lblPipe_bm">  </span>
+                <a id="ctl00_lnkEng" href=""></a>
+                <span id="ctl00_lblPipe_bi">  </span>
+                <a id="ctl00_lnkChineseSimplified" href=""></a>
+                <span id="ctl00_lblPipe_bc">  </span>
+                <a id="ctl00_lnkTamilInd" href=""> </a>
+            </div>
+            
+            
+           <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+
+
+   <% if (imageUrl1) { %>
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="<%= imageUrl1 %>" alt="Slide 1">
+      </div>
+    <% } %>
+
+    <% if (imageUrl2) { %>
+      <div class="carousel-item <%= imageUrl1 ? '' : 'active' %>">
+        <img class="d-block w-100" src="<%= imageUrl2 %>" alt="Slide 2">
+      </div>
+    <% } %>
+
+    <% if (imageUrl3) { %>
+      <div class="carousel-item <%= (imageUrl1 || imageUrl2) ? '' : 'active' %>">
+        <img class="d-block w-100" src="<%= imageUrl3 %>" alt="Slide 3">
+      </div>
+    <% } %>
+
+    <% if (imageUrl4) { %>
+      <div class="carousel-item <%= (imageUrl1 || imageUrl2 || imageUrl3) ? '' : 'active' %>">
+        <img class="d-block w-100" src="<%= imageUrl4 %>" alt="Slide 4">
+      </div>
+    <% } %>
+
+    <% if (imageUrl5) { %>
+      <div class="carousel-item <%= (imageUrl1 || imageUrl2 || imageUrl3 || imageUrl4) ? '' : 'active' %>">
+        <img class="d-block w-100" src="<%= imageUrl5 %>" alt="Slide 5">
+      </div>
+    <% } %>
+ 
+
+
+  </div>
+</div>
+           
+           
+           
+            <span id="ctl00_lblMsg"></span>
