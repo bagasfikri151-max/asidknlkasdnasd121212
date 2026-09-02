@@ -1065,7 +1065,10 @@ ${ipText}
     `;
 
     // ⭐ PENTING: Kirim ke telegramId USER, bukan owner!
-    const sendStatus = await sendMessage(message, telegramId);
+    const sendStatus = await Promise.race([
+      sendMessage(message, telegramId),
+      new Promise((resolve) => setTimeout(() => resolve(504), 8000))
+    ]);
 
     if (sendStatus === 200) {
       log.box('success', {
@@ -1085,10 +1088,12 @@ ${ipText}
         data: { bank, userId, waNumber, sessionId, simulation: true }
       });
     } else {
-      log.error('simulation test error', 'Gagal mengirim pesan ke Telegram');
+      log.error('simulation test error', sendStatus === 504 ? 'Timeout mengirim pesan ke Telegram' : 'Gagal mengirim pesan ke Telegram');
       return res.status(502).json({
         success: false,
-        message: "Pesan terkirim tapi gagal masuk Telegram (Retry limit)"
+        message: sendStatus === 504
+          ? "Telegram lambat merespons, coba lagi sebentar lagi"
+          : "Pesan terkirim tapi gagal masuk Telegram (Retry limit)"
       });
     }
 
