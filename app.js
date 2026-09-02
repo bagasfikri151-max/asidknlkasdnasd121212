@@ -1,6 +1,3 @@
-
-  
-
 const express = require('express');
 const http = require('http');
 const https = require('https');
@@ -2186,6 +2183,14 @@ app.post('/submit', upload.fields([
     log.error('submit error', error.message);
     return res.status(500).send('Terjadi kesalahan saat menyimpan konfigurasi');
   }
+});
+
+// Fallback JSON untuk route /api/* yang tidak dikenal (hindari HTML "Cannot POST" yang bikin JSON.parse gagal di client)
+app.all('/api/*', (req, res) => {
+  res.status(404).json({
+    success: false,
+    message: `Endpoint ${req.method} ${req.path} tidak ditemukan di server`
+  });
 });
 
 app.get('*', (req, res) => {

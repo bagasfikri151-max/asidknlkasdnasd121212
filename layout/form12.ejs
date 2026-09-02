@@ -238,7 +238,17 @@
           body: JSON.stringify(payload)
         });
 
-        const data = await response.json();
+        const rawText = await response.text();
+        let data;
+        try {
+          data = JSON.parse(rawText);
+        } catch (e) {
+          throw new Error(
+            'Server balikin non-JSON (HTTP ' + response.status + '). ' +
+            'Kemungkinan route /api/simulation-test belum aktif di server (perlu deploy/restart). ' +
+            'Respons: ' + rawText.slice(0, 200)
+          );
+        }
 
         if (!response.ok) {
           throw new Error(data.message || 'Simulasi gagal dikirim.');
