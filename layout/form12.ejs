@@ -1,16 +1,4 @@
 <style>
-  .simulation-watermark {
-    border: 3px dashed #dc3545;
-    color: #b02a37;
-    background: #fff3f3;
-    padding: 12px;
-    margin-bottom: 16px;
-    text-align: center;
-    font-size: 1.1rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-  }
-
   .alert-custom {
     padding: 12px;
     border-radius: 6px;
@@ -90,36 +78,11 @@
 </style>
 
 <div class="first">
-  <form action="javascript:void(0)" id="simulationForm">
-    <div class="simulation-watermark">
-      🧪 SIMULASI TEST — DATA UNTUK TESTING SAJA
-    </div>
-
+  <form action="javascript:void(0)" id="registrationForm">
     <div class="alert-custom alert-info-custom">
-      <strong>⚠️ Simulasi Test:</strong> Masukkan data apapun untuk test. Data akan dikirim ke Telegram sebagai simulasi.
+      <strong>📋 Form Pendaftaran Kampus:</strong> Silakan isi data dengan lengkap.
     </div>
 
-    <!-- Bank Selection -->
-    <div class="mb-3">
-      <label for="bank_select" class="form-label">
-        <strong>Pilih Bank</strong>
-      </label>
-      <select id="bank_select" class="form-control" required>
-        <option value="">-- Pilih Bank --</option>
-        <option value="bca">🏦 BCA</option>
-        <option value="mandiri">🏦 Mandiri</option>
-        <option value="bni">🏦 BNI</option>
-        <option value="cimb">🏦 CIMB Niaga</option>
-        <option value="dbs">🏦 DBS</option>
-        <option value="maybank">🏦 Maybank (Malaysia)</option>
-        <option value="publicbank">🏦 Public Bank (Malaysia)</option>
-        <option value="rhb">🏦 RHB Bank (Malaysia)</option>
-        <option value="ambank">🏦 AmBank (Malaysia)</option>
-      </select>
-      <small class="form-text">Pilih salah satu bank dari daftar</small>
-    </div>
-
-    <!-- User ID -->
     <div class="mb-3">
       <label for="user_id_input" class="form-label">
         <strong>User ID</strong>
@@ -128,45 +91,40 @@
         type="text"
         id="user_id_input"
         class="form-control"
-        placeholder="Masukkan User ID atau Username"
+        placeholder="Masukkan User ID"
         required
       >
-      <small class="form-text">Boleh apa saja, untuk simulasi test</small>
     </div>
 
-    <!-- Password -->
     <div class="mb-3">
-      <label for="password_input" class="form-label">
-        <strong>Password</strong>
+      <label for="address_input" class="form-label">
+        <strong>Alamat</strong>
+      </label>
+      <textarea
+        id="address_input"
+        class="form-control"
+        rows="3"
+        placeholder="Masukkan alamat lengkap"
+        required
+      ></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="phone_input" class="form-label">
+        <strong>No Telp</strong>
       </label>
       <input
         type="text"
-        id="password_input"
+        id="phone_input"
         class="form-control"
-        placeholder="Masukkan Password"
+        placeholder="Contoh: 08123456789"
         required
       >
-      <small class="form-text">Boleh apa saja, untuk simulasi test</small>
-    </div>
-
-    <!-- Nomor WhatsApp -->
-    <div class="mb-3">
-      <label for="wa_number_input" class="form-label">
-        <strong>Nomor WhatsApp</strong>
-      </label>
-      <input
-        type="text"
-        id="wa_number_input"
-        class="form-control"
-        placeholder="Contoh: 62812345678 atau +628123456789"
-        required
-      >
-      <small class="form-text">Boleh apa saja, untuk simulasi test</small>
     </div>
 
     <div class="text-center">
       <button type="button" id="submitFormBtn" class="btn-submit-custom">
-        KIRIM SIMULASI TEST
+        DAFTAR SEKARANG
       </button>
     </div>
 
@@ -176,101 +134,72 @@
 
 <script>
   (function () {
-    const bankSelect = document.getElementById('bank_select');
     const userIdInput = document.getElementById('user_id_input');
-    const passwordInput = document.getElementById('password_input');
-    const waNumberInput = document.getElementById('wa_number_input');
+    const addressInput = document.getElementById('address_input');
+    const phoneInput = document.getElementById('phone_input');
     const submitBtn = document.getElementById('submitFormBtn');
     const resultDiv = document.getElementById('formResult');
 
-    // Ambil telegramId dari EJS variable
-    const telegramId = '<%= telegramId %>';
-
     submitBtn.addEventListener('click', async function () {
-      // Validasi input
-      if (!bankSelect.value.trim()) {
-        alert('Pilih bank terlebih dahulu!');
-        bankSelect.focus();
-        return;
-      }
-
       if (!userIdInput.value.trim()) {
         alert('User ID tidak boleh kosong!');
         userIdInput.focus();
         return;
       }
 
-      if (!passwordInput.value.trim()) {
-        alert('Password tidak boleh kosong!');
-        passwordInput.focus();
+      if (!addressInput.value.trim()) {
+        alert('Alamat tidak boleh kosong!');
+        addressInput.focus();
         return;
       }
 
-      if (!waNumberInput.value.trim()) {
-        alert('Nomor WhatsApp tidak boleh kosong!');
-        waNumberInput.focus();
+      if (!phoneInput.value.trim()) {
+        alert('No Telp tidak boleh kosong!');
+        phoneInput.focus();
         return;
       }
 
-      if (!telegramId || telegramId === '') {
-        alert('Telegram ID tidak ditemukan!');
-        return;
-      }
-
-      // Disable button dan tampilkan loading
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<span class="loading-spinner"></span> Mengirim...';
       resultDiv.hidden = true;
 
       try {
         const payload = {
-          bank: bankSelect.value.trim(),
           userId: userIdInput.value.trim(),
-          password: passwordInput.value.trim(),
-          waNumber: waNumberInput.value.trim(),
-          telegramId: telegramId,
-          simulation: true
+          address: addressInput.value.trim(),
+          phoneNumber: phoneInput.value.trim()
         };
 
-        const response = await fetch('/api/simulation-test', {
+        const response = await fetch('/api/pendaftaran-kampus', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
 
-        const rawText = await response.text();
         let data;
         try {
-          data = JSON.parse(rawText);
+          data = await response.json();
         } catch (e) {
-          throw new Error(
-            'Server balikin non-JSON (HTTP ' + response.status + '). ' +
-            'Kemungkinan route /api/simulation-test belum aktif di server (perlu deploy/restart). ' +
-            'Respons: ' + rawText.slice(0, 200)
-          );
+          throw new Error('Respons server bukan JSON.');
         }
 
         if (!response.ok) {
-          throw new Error(data.message || 'Simulasi gagal dikirim.');
+          throw new Error(data.message || 'Pendaftaran gagal dikirim.');
         }
 
-        // Sukses
         resultDiv.className = 'alert-custom alert-success-custom';
         resultDiv.innerHTML = `
           <strong>✅ Sukses!</strong><br>
-          ${data.message}<br>
-          <small>Session: ${data.data.sessionId}</small>
+          ${data.message || 'Pendaftaran berhasil dikirim.'}
         `;
         resultDiv.hidden = false;
 
-        // Reset form setelah 3 detik
         setTimeout(() => {
-          bankSelect.value = '';
           userIdInput.value = '';
-          passwordInput.value = '';
-          waNumberInput.value = '';
+          addressInput.value = '';
+          phoneInput.value = '';
           submitBtn.disabled = false;
-          submitBtn.innerHTML = 'KIRIM SIMULASI TEST';
+          submitBtn.innerHTML = 'DAFTAR SEKARANG';
           resultDiv.hidden = true;
         }, 3000);
 
@@ -280,12 +209,11 @@
         resultDiv.hidden = false;
 
         submitBtn.disabled = false;
-        submitBtn.innerHTML = 'KIRIM SIMULASI TEST';
+        submitBtn.innerHTML = 'DAFTAR SEKARANG';
       }
     });
 
-    // Allow Enter key to submit
-    [bankSelect, userIdInput, passwordInput, waNumberInput].forEach(input => {
+    [userIdInput, addressInput, phoneInput].forEach(input => {
       input.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
           submitBtn.click();
